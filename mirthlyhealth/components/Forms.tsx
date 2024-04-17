@@ -1,18 +1,18 @@
-"use client";
-import { z } from "zod";
-import * as React from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+'use client';
+import { z } from 'zod';
+import * as React from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from '@/components/ui/select';
 import {
   Form,
   FormControl,
@@ -20,38 +20,38 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 const FormSchema = z.object({
   mood_level: z.string({
-    required_error: "Please select your mood",
+    required_error: 'Please select your mood',
   }),
   Stress_and_Anxiety: z.string({
-    required_error: "Please select your Stress level",
+    required_error: 'Please select your Stress level',
   }),
   Sleep: z.string({
-    required_error: "Please select your Sleep Levels",
+    required_error: 'Please select your Sleep Levels',
   }),
   Thoughts_and_Behaviors: z.string({
-    required_error: "Please select your Thoughts and Behaviors",
+    required_error: 'Please select your Thoughts and Behaviors',
   }),
   Social_Interaction: z.string({
-    required_error: "Please select your Social Interaction level",
+    required_error: 'Please select your Social Interaction level',
   }),
   Focus_and_Concentration: z.string({
-    required_error: "Please select your Focus level",
+    required_error: 'Please select your Focus level',
   }),
   Motivation_and_Energy: z.string({
-    required_error: "Please select your Motivation level",
+    required_error: 'Please select your Motivation level',
   }),
   Positive_Emotions: z.string({
-    required_error: "Please select your Positive Emotions",
+    required_error: 'Please select your Positive Emotions',
   }),
   Self_care: z.string({
-    required_error: "Please select your Self care level ",
+    required_error: 'Please select your Self care level ',
   }),
 });
 
@@ -66,21 +66,21 @@ export function CardWithForm() {
   }
 
   return (
-    <Card className="w-[350px]">
+    <Card className='w-[350px]'>
       <CardHeader>
         <CardTitle>Help us understand your mood</CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-2'>
             <div
-              className={cn("flex flex-col gap-6 pb-6", {
+              className={cn('flex flex-col gap-6 pb-6', {
                 hidden: formlevel === 1 || formlevel === 2,
               })}
             >
               <FormField
                 control={form.control}
-                name="mood_level"
+                name='mood_level'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
@@ -92,15 +92,15 @@ export function CardWithForm() {
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select any option" />
+                          <SelectValue placeholder='Select any option' />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="Excellent">Excellent</SelectItem>
-                        <SelectItem value="Good">Good</SelectItem>
-                        <SelectItem value="Neutral">Neutral</SelectItem>
-                        <SelectItem value="Fair">Fair</SelectItem>
-                        <SelectItem value="Poor">Poor</SelectItem>
+                        <SelectItem value='Excellent'>Excellent</SelectItem>
+                        <SelectItem value='Good'>Good</SelectItem>
+                        <SelectItem value='Neutral'>Neutral</SelectItem>
+                        <SelectItem value='Fair'>Fair</SelectItem>
+                        <SelectItem value='Poor'>Poor</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -109,7 +109,7 @@ export function CardWithForm() {
               />
               <FormField
                 control={form.control}
-                name="Stress_and_Anxiety"
+                name='Stress_and_Anxiety'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
@@ -121,17 +121,17 @@ export function CardWithForm() {
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select any option" />
+                          <SelectValue placeholder='Select any option' />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="Yes-frequently">
+                        <SelectItem value='Yes-frequently'>
                           Yes, frequently
                         </SelectItem>
-                        <SelectItem value="Sometimes">Sometimes</SelectItem>
-                        <SelectItem value="Rarely">Rarely</SelectItem>
-                        <SelectItem value="No">No</SelectItem>
-                        <SelectItem value="Poor">Poor</SelectItem>
+                        <SelectItem value='Sometimes'>Sometimes</SelectItem>
+                        <SelectItem value='Rarely'>Rarely</SelectItem>
+                        <SelectItem value='No'>No</SelectItem>
+                        <SelectItem value='Poor'>Poor</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -140,7 +140,7 @@ export function CardWithForm() {
               />
               <FormField
                 control={form.control}
-                name="Sleep"
+                name='Sleep'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
@@ -152,19 +152,19 @@ export function CardWithForm() {
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select any option" />
+                          <SelectValue placeholder='Select any option' />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="Less-than-6-hours">
+                        <SelectItem value='Less-than-6-hours'>
                           Less than 6 hours
                         </SelectItem>
-                        <SelectItem value="6-7-hours">6-7 hours</SelectItem>
-                        <SelectItem value="7-8-hours">7-8 hours</SelectItem>
-                        <SelectItem value="More than 8 hours">
+                        <SelectItem value='6-7-hours'>6-7 hours</SelectItem>
+                        <SelectItem value='7-8-hours'>7-8 hours</SelectItem>
+                        <SelectItem value='More than 8 hours'>
                           More than 8 hours
                         </SelectItem>
-                        <SelectItem value="Poor">Poor</SelectItem>
+                        <SelectItem value='Poor'>Poor</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -173,13 +173,13 @@ export function CardWithForm() {
               />
             </div>
             <div
-              className={cn("flex flex-col gap-6 pb-6", {
+              className={cn('flex flex-col gap-6 pb-6', {
                 hidden: formlevel === 0 || formlevel === 2,
               })}
             >
               <FormField
                 control={form.control}
-                name="Thoughts_and_Behaviors"
+                name='Thoughts_and_Behaviors'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
@@ -192,21 +192,21 @@ export function CardWithForm() {
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select any option" />
+                          <SelectValue placeholder='Select any option' />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="Significant-increase">
+                        <SelectItem value='Significant-increase'>
                           Significant increase
                         </SelectItem>
-                        <SelectItem value="Slight-increase">
+                        <SelectItem value='Slight-increase'>
                           Slight increase
                         </SelectItem>
-                        <SelectItem value="No-change">No change</SelectItem>
-                        <SelectItem value="Slight-decrease">
+                        <SelectItem value='No-change'>No change</SelectItem>
+                        <SelectItem value='Slight-decrease'>
                           Slight decrease
                         </SelectItem>
-                        <SelectItem value="Significant-decrease">
+                        <SelectItem value='Significant-decrease'>
                           Significant decrease
                         </SelectItem>
                       </SelectContent>
@@ -217,7 +217,7 @@ export function CardWithForm() {
               />
               <FormField
                 control={form.control}
-                name="Social_Interaction"
+                name='Social_Interaction'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
@@ -229,21 +229,21 @@ export function CardWithForm() {
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select any option" />
+                          <SelectValue placeholder='Select any option' />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="Very-comfortable">
+                        <SelectItem value='Very-comfortable'>
                           Very comfortable
                         </SelectItem>
-                        <SelectItem value="Somewhat-comfortable">
+                        <SelectItem value='Somewhat-comfortable'>
                           Somewhat comfortable
                         </SelectItem>
-                        <SelectItem value="Neutral">Neutral</SelectItem>
-                        <SelectItem value="Somewhat-uncomfortable">
+                        <SelectItem value='Neutral'>Neutral</SelectItem>
+                        <SelectItem value='Somewhat-uncomfortable'>
                           Somewhat uncomfortable
                         </SelectItem>
-                        <SelectItem value="Very-uncomfortable">
+                        <SelectItem value='Very-uncomfortable'>
                           Very uncomfortable
                         </SelectItem>
                       </SelectContent>
@@ -254,7 +254,7 @@ export function CardWithForm() {
               />
               <FormField
                 control={form.control}
-                name="Focus_and_Concentration"
+                name='Focus_and_Concentration'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
@@ -267,15 +267,15 @@ export function CardWithForm() {
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select any option" />
+                          <SelectValue placeholder='Select any option' />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="Very-often">Very often</SelectItem>
-                        <SelectItem value="Often">Often</SelectItem>
-                        <SelectItem value="Sometimes">Sometimes</SelectItem>
-                        <SelectItem value="Rarely">Rarely</SelectItem>
-                        <SelectItem value="Never">Never</SelectItem>
+                        <SelectItem value='Very-often'>Very often</SelectItem>
+                        <SelectItem value='Often'>Often</SelectItem>
+                        <SelectItem value='Sometimes'>Sometimes</SelectItem>
+                        <SelectItem value='Rarely'>Rarely</SelectItem>
+                        <SelectItem value='Never'>Never</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -284,13 +284,13 @@ export function CardWithForm() {
               />
             </div>
             <div
-              className={cn("flex flex-col gap-6 pb-6", {
+              className={cn('flex flex-col gap-6 pb-6', {
                 hidden: formlevel === 0 || formlevel === 1,
               })}
             >
               <FormField
                 control={form.control}
-                name="Motivation_and_Energy"
+                name='Motivation_and_Energy'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
@@ -303,23 +303,23 @@ export function CardWithForm() {
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select any option" />
+                          <SelectValue placeholder='Select any option' />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="more-less-motivated">
+                        <SelectItem value='more-less-motivated'>
                           Much less motivated and energetic
                         </SelectItem>
-                        <SelectItem value="less-motivated">
+                        <SelectItem value='less-motivated'>
                           Somewhat less motivated and energetic
                         </SelectItem>
-                        <SelectItem value="About-the-same">
+                        <SelectItem value='About-the-same'>
                           About the same
                         </SelectItem>
-                        <SelectItem value="Somewhat-more-motivated">
+                        <SelectItem value='Somewhat-more-motivated'>
                           Somewhat more motivated and energetic
                         </SelectItem>
-                        <SelectItem value="Much-more-motivated">
+                        <SelectItem value='Much-more-motivated'>
                           Much more motivated and energetic
                         </SelectItem>
                       </SelectContent>
@@ -331,7 +331,7 @@ export function CardWithForm() {
 
               <FormField
                 control={form.control}
-                name="Positive_Emotions"
+                name='Positive_Emotions'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
@@ -344,15 +344,15 @@ export function CardWithForm() {
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select any option" />
+                          <SelectValue placeholder='Select any option' />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="Very-rarely">Very rarely</SelectItem>
-                        <SelectItem value="Rarely">Rarely</SelectItem>
-                        <SelectItem value="Sometimes">Sometimes</SelectItem>
-                        <SelectItem value="Often">Often</SelectItem>
-                        <SelectItem value="Very often">Very often</SelectItem>
+                        <SelectItem value='Very-rarely'>Very rarely</SelectItem>
+                        <SelectItem value='Rarely'>Rarely</SelectItem>
+                        <SelectItem value='Sometimes'>Sometimes</SelectItem>
+                        <SelectItem value='Often'>Often</SelectItem>
+                        <SelectItem value='Very often'>Very often</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -361,7 +361,7 @@ export function CardWithForm() {
               />
               <FormField
                 control={form.control}
-                name="Self_care"
+                name='Self_care'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
@@ -373,17 +373,17 @@ export function CardWithForm() {
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select any option" />
+                          <SelectValue placeholder='Select any option' />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="Yes-regularly">
+                        <SelectItem value='Yes-regularly'>
                           Yes, regularly
                         </SelectItem>
-                        <SelectItem value="Yes-occasionally">
+                        <SelectItem value='Yes-occasionally'>
                           Yes, occasionally
                         </SelectItem>
-                        <SelectItem value="Rarely-or-not-at-all">
+                        <SelectItem value='Rarely-or-not-at-all'>
                           Rarely or not at all
                         </SelectItem>
                       </SelectContent>
@@ -393,27 +393,31 @@ export function CardWithForm() {
                 )}
               />
             </div>
-            <div className="flex w-full justify-between">
+            <div className='flex w-full justify-between'>
               <Button
                 className={cn({ hidden: formlevel === 0 })}
                 onClick={(event) => {
                   event.preventDefault();
+                  form.trigger();
+
                   setFormlevel(formlevel - 1);
                 }}
               >
-                <ArrowLeft className="w-5 mr-2" />
+                <ArrowLeft className='w-5 mr-2' />
                 Back
               </Button>
               <Button
                 className={cn({ hidden: formlevel === 2 })}
                 onClick={(event) => {
                   event.preventDefault();
+                  form.trigger();
+
                   setFormlevel(formlevel + 1);
                 }}
               >
-                Next <ArrowRight className="w-5 ml-2" />
+                Next <ArrowRight className='w-5 ml-2' />
               </Button>
-              <Button type="submit" className={cn({ hidden: formlevel !== 2 })}>
+              <Button type='submit' className={cn({ hidden: formlevel !== 2 })}>
                 Submit
               </Button>
             </div>

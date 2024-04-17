@@ -24,6 +24,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { analyze_data } from '@/utils/a';
 
 const FormSchema = z.object({
   mood_level: z.string({
@@ -62,7 +63,7 @@ export function CardWithForm() {
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data);
+    analyze_data(data);
   }
 
   return (

@@ -1,4 +1,4 @@
-import { NavigationMenuDemo } from '@/components/Navigation';
+import { NavigationMenuDemo } from "@/components/Navigation";
 
 const page = () => {
   return (

@@ -396,11 +396,10 @@ export function CardWithForm() {
             </div>
             <div className="flex w-full justify-between">
               <Button
+                variant="ghost"
                 className={cn({ hidden: formlevel === 0 })}
                 onClick={(event) => {
                   event.preventDefault();
-                  form.trigger();
-
                   setFormlevel(formlevel - 1);
                 }}
               >
@@ -411,8 +410,27 @@ export function CardWithForm() {
                 className={cn({ hidden: formlevel === 2 })}
                 onClick={(event) => {
                   event.preventDefault();
-                  form.trigger();
+                  if (formlevel === 0) {
+                    form.trigger(["mood_level", "Stress_and_Anxiety", "Sleep"]);
+                    const moodlevel = form.getValues("mood_level");
+                    const StressandAnxiety =
+                      form.getValues("Stress_and_Anxiety");
+                    const sleep = form.getValues("Sleep");
+                    if (!moodlevel || !StressandAnxiety || !sleep) return;
+                  }
+                  if (formlevel === 1) {
+                    form.trigger([
+                      "Thoughts_and_Behaviors",
+                      "Social_Interaction",
+                      "Focus_and_Concentration",
+                    ]);
+                    const Thoughts = form.getValues("Thoughts_and_Behaviors");
+                    const Social = form.getValues("Social_Interaction");
+                    const Focus = form.getValues("Focus_and_Concentration");
+                    if (!Thoughts || !Social || !Focus) return;
+                  }
 
+                  formlevel === 2 && form.trigger();
                   setFormlevel(formlevel + 1);
                 }}
               >

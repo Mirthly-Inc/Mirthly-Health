@@ -20,7 +20,7 @@ export function NavigationMenuDemo() {
   };
 
   return (
-    <nav className="p-4 border-black border-2 flex items-center justify-between">
+    <nav className="p-4 border-black border-b-2 flex items-center justify-between">
       <div className="">Mirthly Health</div>
       <div className="flex bg-slate-200 rounded-3xl">
         <NavigationMenu>

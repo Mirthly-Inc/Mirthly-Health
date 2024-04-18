@@ -1,10 +1,10 @@
-import { NavigationMenuDemo } from '@/components/Navigation';
+import { NavigationMenuDemo } from "@/components/Navigation";
 
 const page = () => {
   return (
     <div>
       <NavigationMenuDemo />
-      <div>page</div>
+      <div>Addiction Control</div>
     </div>
   );
 };

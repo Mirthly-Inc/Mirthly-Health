@@ -1,8 +1,8 @@
-import { PromptTemplate } from '@langchain/core/prompts';
-import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
-import { RunnableSequence } from '@langchain/core/runnables';
-import { z } from 'zod';
-import { StructuredOutputParser } from 'langchain/output_parsers';
+import { PromptTemplate } from "@langchain/core/prompts";
+import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
+import { RunnableSequence } from "@langchain/core/runnables";
+import { z } from "zod";
+import { StructuredOutputParser } from "langchain/output_parsers";
 
 interface inputtype {
   Focus_and_Concentration: string;
@@ -17,24 +17,33 @@ interface inputtype {
 }
 const parser = StructuredOutputParser.fromZodSchema(
   z.object({
-    tasks: z
-      .array(z.string())
-      .describe("5 tasks to improve user's current mental health"),
+    tasks: z.array(
+      z.object({
+        shortform: z
+          .string()
+          .describe(
+            "5 tasks to improve user's current mental health in short form (ie.. two or three words)"
+          ),
+        longform: z
+          .string()
+          .describe(
+            "Give me the detailed step by step guide for the shortform task"
+          ),
+      })
+    ),
     exercise: z
       .array(z.string())
-      .describe(
-        "5 exercise to relieve the user's stress based on thier preferences"
-      ),
+      .describe("5 Cognitive Behavioral Therapy (CBT) Activities"),
     recommendations: z
       .array(z.string())
       .describe(
-        '5 videos to improve current users mental health, should be latest youtube video links .'
+        "5 videos to improve current users mental health, should be latest youtube video links ."
       ),
   })
 );
 const model = new ChatGoogleGenerativeAI({
-  apiKey: 'AIzaSyCmYbHz_PvndyICs2n7lvrpCGoiN3cAPzo',
-  model: 'gemini-pro',
+  apiKey: "AIzaSyCmYbHz_PvndyICs2n7lvrpCGoiN3cAPzo",
+  model: "gemini-pro",
   maxOutputTokens: 2048,
 });
 export const analyze_data = async (input: inputtype) => {
@@ -50,7 +59,7 @@ export const analyze_data = async (input: inputtype) => {
   mood_level: ${input.mood_level}`;
   const chain = RunnableSequence.from([
     PromptTemplate.fromTemplate(
-      'Answer the users question as best as possible.\n{format_instructions}\n{question}'
+      "Answer the users question as best as possible.\n{format_instructions}\n{question}"
     ),
     model,
     parser,

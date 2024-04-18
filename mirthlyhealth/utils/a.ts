@@ -27,7 +27,7 @@ const parser = StructuredOutputParser.fromZodSchema(
         longform: z
           .string()
           .describe(
-            "Give me the detailed step by step guide for the shortform task"
+            "Give me the detailed 15 lines, step by step guide for the shortform task"
           ),
       })
     ),

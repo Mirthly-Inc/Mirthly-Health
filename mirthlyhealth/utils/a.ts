@@ -61,9 +61,3 @@ export const analyze_data = async (input: inputtype) => {
   });
   console.log(response);
 };
-
-/*
-  AIMessage {
-    content: "Why don't bears wear shoes?\n\nBecause they have bear feet!",
-  }
-*/

@@ -25,10 +25,14 @@ const parser = StructuredOutputParser.fromZodSchema(
             "5 tasks to improve user's current mental health in short form (ie.. two or three words)"
           ),
         longform: z
-          .string()
-          .describe(
-            "Give me the detailed 15 lines, step by step guide for the shortform task"
-          ),
+          .array(
+            z
+              .string()
+              .describe(
+                "Exactly 5 points explaining the steps of the short form."
+              )
+          )
+          .length(5),
       })
     ),
     exercise: z
@@ -68,5 +72,5 @@ export const analyze_data = async (input: inputtype) => {
     question: inputdata,
     format_instructions: parser.getFormatInstructions(),
   });
-  console.log(response);
+  return response;
 };

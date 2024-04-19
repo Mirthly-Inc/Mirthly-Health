@@ -25,6 +25,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { analyze_data } from "@/utils/a";
+import { useData } from "@/utils/dataContext";
 
 const FormSchema = z.object({
   mood_level: z.string({
@@ -58,13 +59,28 @@ const FormSchema = z.object({
 
 export function CardWithForm() {
   const [formlevel, setFormlevel] = React.useState(0);
+  // const [loading, setLoading] = React.useState(false);
+  const { data, setData } = useData();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    analyze_data(data);
-  }
+  // if (
+  //   lastSubmittedDate &&
+  //   !isSameDay(new Date(lastSubmittedDate), new Date())
+  // ) {
+  //   useDataStore.setState({
+  //     hasSubmittedToday: false,
+  //     lastSubmittedDate: null,
+  //   });
+  // }
+
+  const onSubmit = async (datas: z.infer<typeof FormSchema>) => {
+    console.log("Loading...");
+    const res = await analyze_data(datas);
+    setData(res);
+    console.log(res);
+  };
 
   return (
     <Card className="w-[350px]">

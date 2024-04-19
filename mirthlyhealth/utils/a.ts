@@ -22,22 +22,37 @@ const parser = StructuredOutputParser.fromZodSchema(
         shortform: z
           .string()
           .describe(
-            "5 tasks to improve user's current mental health in short form (ie.. two or three words)"
+            "6 tasks to improve user's current mental health in short form (ie.. two or three words)"
           ),
         longform: z
           .array(
             z
               .string()
               .describe(
-                "Exactly 5 points explaining the steps of the short form."
+                "Exactly 6 points explaining the steps of the short form."
               )
           )
-          .length(5),
+          .length(6),
       })
     ),
     exercise: z
-      .array(z.string())
-      .describe("5 Cognitive Behavioral Therapy (CBT) Activities"),
+      .array(
+        z.object({
+          exercise_name: z
+            .string()
+            .describe(
+              "Give me only the name of Exercises to improve mental health"
+            ),
+          exercise_description: z
+            .array(
+              z
+                .string()
+                .describe("Give me the steps to do the corresponding exercise")
+            )
+            .length(5),
+        })
+      )
+      .length(6),
     recommendations: z
       .array(z.string())
       .describe(

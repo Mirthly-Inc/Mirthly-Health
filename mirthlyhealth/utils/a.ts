@@ -22,17 +22,17 @@ const parser = StructuredOutputParser.fromZodSchema(
         shortform: z
           .string()
           .describe(
-            "6 tasks to improve user's current mental health in short form (ie.. two or three words)"
+            "4 tasks to improve user's current mental health in short form (ie.. two or three words)"
           ),
         longform: z
           .array(
             z
               .string()
               .describe(
-                "Exactly 6 points explaining the steps of the short form."
+                "Exactly 4 points explaining the steps of the short form."
               )
           )
-          .length(6),
+          .length(4),
       })
     ),
     exercise: z
@@ -47,17 +47,12 @@ const parser = StructuredOutputParser.fromZodSchema(
             .array(
               z
                 .string()
-                .describe("Give me the steps to do the corresponding exercise")
+                .describe("Give me 3 steps to do the corresponding exercise")
             )
-            .length(5),
+            .length(3),
         })
       )
-      .length(6),
-    recommendations: z
-      .array(z.string())
-      .describe(
-        "5 videos to improve current users mental health, should be latest youtube video links ."
-      ),
+      .length(3),
   })
 );
 const model = new ChatGoogleGenerativeAI({

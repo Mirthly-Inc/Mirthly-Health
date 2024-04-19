@@ -181,7 +181,6 @@ export function CardWithForm() {
                         <SelectItem value="More than 8 hours">
                           More than 8 hours
                         </SelectItem>
-                        <SelectItem value="Poor">Poor</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />

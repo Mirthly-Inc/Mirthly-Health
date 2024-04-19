@@ -1,57 +1,127 @@
 "use client";
 
 import { NavigationMenuDemo } from "@/components/Navigation";
-// import { useData } from "@/utils/dataContext";
+import { useData } from "@/utils/dataContext";
 
-const data = {
-  tasks: [
-    {
-      shortform: "Take a moment to focus",
-      longform:
-        "Take a moment to focus on your breath. Notice the rise and fall of your chest, the feeling of the air entering and leaving your body. Continue to focus on your breath for several minutes, letting go of any distractions.",
-    },
-    {
-      shortform: "Write down three things",
-      longform:
-        "Write down three things you are grateful for each day. Reflect on the positive aspects of your life and appreciate the good things that you have.",
-    },
-    {
-      shortform: "Set small, achievable goals",
-      longform:
-        "Set small, achievable goals for yourself each day. Accomplishing your goals will give you a sense of purpose and boost your motivation.",
-    },
-    {
-      shortform: "Take regular breaks",
-      longform:
-        "Take regular breaks throughout the day to rest and recharge. Get up and move around, or step outside for some fresh air.",
-    },
-    {
-      shortform: "Make an effort to connect",
-      longform:
-        "Make an effort to connect with friends and family who support you. Spend time talking, laughing, and sharing experiences.",
-    },
-  ],
-};
+// const data = {
+//   exercise: [
+//     {
+//       exercise_name: "Deep Breathing",
+//       exercise_description: [
+//         "Take a deep breath in through your nose for 4 seconds.",
+//         "Hold your breath for 7 seconds.",
+//         "Exhale slowly through your mouth for 8 seconds.",
+//         "Repeat for 5-10 minutes.",
+//       ],
+//     },
+
+//     {
+//       exercise_name: "Deep Breathing",
+//       exercise_description: [
+//         "Take a deep breath in through your nose for 4 seconds.",
+//         "Hold your breath for 7 seconds.",
+//         "Exhale slowly through your mouth for 8 seconds.",
+//         "Repeat for 5-10 minutes.",
+//       ],
+//     },
+//     {
+//       exercise_name: "Deep Breathing",
+//       exercise_description: [
+//         "Take a deep breath in through your nose for 4 seconds.",
+//         "Hold your breath for 7 seconds.",
+//         "Exhale slowly through your mouth for 8 seconds.",
+//         "Repeat for 5-10 minutes.",
+//       ],
+//     },
+//   ],
+//   tasks: [
+//     {
+//       shortform: "Breathe",
+//       longform: [
+//         "Inhale slowly through your nose for 4 counts.",
+//         "Hold your breath for 7 counts.",
+//         "Exhale slowly through your mouth for 8 counts.",
+//         "Repeat for 5-10 minutes.",
+//       ],
+//     },
+//     {
+//       shortform: "Breathe",
+//       longform: [
+//         "Inhale slowly through your nose for 4 counts.",
+//         "Hold your breath for 7 counts.",
+//         "Exhale slowly through your mouth for 8 counts.",
+//         "Repeat for 5-10 minutes.",
+//       ],
+//     },
+//     {
+//       shortform: "Breathe",
+//       longform: [
+//         "Inhale slowly through your nose for 4 counts.",
+//         "Hold your breath for 7 counts.",
+//         "Exhale slowly through your mouth for 8 counts.",
+//         "Repeat for 5-10 minutes.",
+//       ],
+//     },
+//     {
+//       shortform: "Breathe",
+//       longform: [
+//         "Inhale slowly through your nose for 4 counts.",
+//         "Hold your breath for 7 counts.",
+//         "Exhale slowly through your mouth for 8 counts.",
+//         "Repeat for 5-10 minutes.",
+//       ],
+//     },
+//   ],
+// };
+
 const page = () => {
-  // const { data } = useData();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { data } = useData();
   return (
-    <div>
+    <div className="h-screen">
       <NavigationMenuDemo />
       {data && (
-        <div className="p-6 flex gap-6">
-          <div className="grid gap-6 grid-cols-2 basis-2/3">
-            {data.tasks.map((solo, index) => (
-              <div
-                className=" border-2 border-black rounded-xl p-6"
-                key={index}
-              >
-                <div className="font-semibold">{solo.shortform}</div>
-                <div className="pt-2 ">{solo.longform}</div>
-              </div>
-            ))}
+        <div className="p-6 flex gap-6 ">
+          <div className="basis-2/3">
+            <div className="font-bold text-xl pb-4">Your Tasks:</div>
+            <div className="grid grid-flow-row-dense gap-6 grid-cols-2 grid-row-2 ">
+              {data.tasks.map((solo, index) => (
+                <div
+                  className=" border-2 border-black rounded-xl p-4"
+                  key={index}
+                >
+                  <div className="font-semibold">{solo.shortform}</div>
+                  <div>
+                    {solo.longform.map((solodata, index) => (
+                      <li key={index} className=" pt-2">
+                        {solodata}
+                      </li>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="basis-1/3 border-2 border-black rounded-xl p-6 shadow-xl">
-            Exercises also list here
+          <div className="basis-1/3 border-2 border-black rounded-xl p-4 shadow-xl">
+            <div className="font-bold text-xl pb-4">Recommended Exercises</div>
+            {data && (
+              <div>
+                {data.exercise.map((single, index) => (
+                  <div className="pb-4" key={index}>
+                    <div className="font-semibold">
+                      {index + 1}. {single.exercise_name}
+                    </div>
+                    <div>
+                      {single.exercise_description.map((singleexe, index) => (
+                        <li className="pt-2" key={index}>
+                          {singleexe}
+                        </li>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}

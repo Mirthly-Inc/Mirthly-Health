@@ -87,7 +87,7 @@ const page = () => {
             <div className="grid grid-flow-row-dense gap-6 grid-cols-2 grid-row-2 ">
               {data.tasks.map((solo, index) => (
                 <div
-                  className=" border-2 border-black rounded-xl p-4"
+                  className="border-2 border-black rounded-xl p-4 shadow-xl"
                   key={index}
                 >
                   <div className="font-semibold">{solo.shortform}</div>

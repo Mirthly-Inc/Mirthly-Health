@@ -17,12 +17,17 @@ interface inputtype {
 }
 const parser = StructuredOutputParser.fromZodSchema(
   z.object({
+    stress_level: z
+      .number()
+      .describe(
+        "Give a stress level out of 10 for the user current submission, The level should be a whole number."
+      ),
     tasks: z.array(
       z.object({
         shortform: z
           .string()
           .describe(
-            "4 tasks to improve user's current mental health in short form (ie.. two or three words)"
+            "4 tasks to improve user's current mental health in short form (three words)."
           ),
         longform: z
           .array(
@@ -41,13 +46,13 @@ const parser = StructuredOutputParser.fromZodSchema(
           exercise_name: z
             .string()
             .describe(
-              "Give me only the name of Exercises to improve mental health"
+              "Give me only the name of Exercises to improve mental health."
             ),
           exercise_description: z
             .array(
               z
                 .string()
-                .describe("Give me 3 steps to do the corresponding exercise")
+                .describe("Give me 3 steps to do the corresponding exercise.")
             )
             .length(3),
         })
@@ -78,9 +83,17 @@ export const analyze_data = async (input: inputtype) => {
     model,
     parser,
   ]);
-  const response = await chain.invoke({
-    question: inputdata,
-    format_instructions: parser.getFormatInstructions(),
-  });
+  let response = {};
+  try {
+    response = await chain.invoke({
+      question: inputdata,
+      format_instructions: parser.getFormatInstructions(),
+    });
+  } catch (error) {
+    response = await chain.invoke({
+      question: inputdata,
+      format_instructions: parser.getFormatInstructions(),
+    });
+  }
   return response;
 };

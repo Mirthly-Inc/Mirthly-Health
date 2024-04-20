@@ -79,7 +79,7 @@ export function CardWithForm() {
     console.log("Loading...");
     const res = await analyze_data(datas);
     setData(res);
-    console.log(res);
+    console.log(JSON.stringify(res));
   };
 
   return (

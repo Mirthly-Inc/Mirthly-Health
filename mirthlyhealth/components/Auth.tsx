@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CalendarForm } from "./Calender";
+import { SignInForm } from "./SignIn_Form";
 
 export function TabsDemo() {
   return (
@@ -28,18 +29,8 @@ export function TabsDemo() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
-            <div className="space-y-1">
-              <Label htmlFor="name">Email</Label>
-              <Input id="email" placeholder="johndoe23@gmail.com" />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="username">Password</Label>
-              <Input id="password" type="password" />
-            </div>
+            <SignInForm islogin={true} />
           </CardContent>
-          <CardFooter>
-            <Button>Welcome Back</Button>
-          </CardFooter>
         </Card>
       </TabsContent>
       <TabsContent value="password">
@@ -51,22 +42,8 @@ export function TabsDemo() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
-            <div className="space-y-1">
-              <Label htmlFor="current">Email Address</Label>
-              <Input id="email" type="password" placeholder="johndoe@abc.com" />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="new">Password</Label>
-              <Input id="password" type="password" />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="new">Date of Birth</Label>
-              <CalendarForm />
-            </div>
+            <SignInForm islogin={false} />
           </CardContent>
-          <CardFooter>
-            <Button>Explore</Button>
-          </CardFooter>
         </Card>
       </TabsContent>
     </Tabs>

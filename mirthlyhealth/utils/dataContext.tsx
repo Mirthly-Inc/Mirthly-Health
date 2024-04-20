@@ -14,9 +14,10 @@ const DataContext = createContext<DataContextValue>({
 
 export const DataProvider = ({ children }: { children: React.ReactNode }) => {
   const [data, setData] = useState<any | null>(null);
+  const [user, setUser] = useState<string | null>(null);
 
   return (
-    <DataContext.Provider value={{ data, setData }}>
+    <DataContext.Provider value={{ data, setData, user, setUser }}>
       {children}
     </DataContext.Provider>
   );

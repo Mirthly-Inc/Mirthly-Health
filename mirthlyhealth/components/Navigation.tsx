@@ -11,6 +11,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 export function NavigationMenuDemo() {
   const pathname = usePathname();
@@ -21,7 +22,16 @@ export function NavigationMenuDemo() {
 
   return (
     <nav className="p-4 border-black border-b-2 flex items-center justify-between">
-      <div className="">Mirthly Health</div>
+      <Link href="/dashboard" className="flex gap-4 items-center">
+        <Image
+          className="rounded-md"
+          src="/mirthly.jpg"
+          height={25}
+          width={35}
+          alt="mirthly logo"
+        />
+        <div className="font-medium text-xl">Mirthly Health</div>
+      </Link>
       <div className="flex bg-slate-700 rounded-3xl">
         <NavigationMenu>
           <NavigationMenuList>

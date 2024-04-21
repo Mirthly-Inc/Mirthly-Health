@@ -139,7 +139,7 @@ const Dashboard = () => {
       <div className="p-6 h-[90%]">
         <div className="flex gap-6 h-full">
           <div className="flex flex-col basis-1/2 gap-6">
-            <div className="flex justify-between items-center">
+            <div className="flex gap-4 items-center">
               <div className="text-xl">Hello Prem</div>
               <div>{quote}</div>
             </div>

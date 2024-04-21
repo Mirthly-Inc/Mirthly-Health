@@ -22,9 +22,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <head>
-        <link rel="icon" href="/mirthly.jpg" type="image/jpg" sizes="any" />
-      </head>
       <DataProvider>
         <body
           className={cn(

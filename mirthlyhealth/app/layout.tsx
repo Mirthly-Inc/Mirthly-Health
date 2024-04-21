@@ -1,13 +1,15 @@
-import type { Metadata } from "next";
-import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import type { Metadata } from "next";
+import { Toaster } from "@/components/ui/toaster";
 import { DataProvider } from "@/utils/dataContext";
+import { Inter as FontSans } from "next/font/google";
 
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
+
 export const metadata: Metadata = {
   title: "Mirthly Health",
   description: "Your Personalized mental health partner",
@@ -30,7 +32,8 @@ export default function RootLayout({
             fontSans.variable
           )}
         >
-          {children}
+          <main>{children}</main>
+          <Toaster />
         </body>
       </DataProvider>
     </html>

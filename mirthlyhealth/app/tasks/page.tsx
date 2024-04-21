@@ -73,6 +73,14 @@ import { useData } from "@/utils/dataContext";
 //     },
 //   ],
 // };
+interface exercise_type {
+  exercise_name: string;
+  exercise_description: string[];
+}
+interface tasks_type {
+  shortform: string;
+  longform: string[];
+}
 
 const page = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -85,14 +93,14 @@ const page = () => {
           <div className="basis-2/3">
             <div className="font-bold text-xl pb-4">Your Tasks:</div>
             <div className="grid grid-flow-row-dense gap-6 grid-cols-2 grid-row-2 ">
-              {data.tasks.map((solo, index) => (
+              {data.tasks.map((solo: tasks_type, index: number) => (
                 <div
-                  className="border-2 border-black rounded-xl p-4 shadow-xl"
+                  className="border-2 border-white rounded-xl p-4 shadow-xl"
                   key={index}
                 >
                   <div className="font-semibold">{solo.shortform}</div>
                   <div>
-                    {solo.longform.map((solodata, index) => (
+                    {solo.longform.map((solodata: string, index: number) => (
                       <li key={index} className=" pt-2">
                         {solodata}
                       </li>
@@ -102,21 +110,23 @@ const page = () => {
               ))}
             </div>
           </div>
-          <div className="basis-1/3 border-2 border-black rounded-xl p-4 shadow-xl">
+          <div className="basis-1/3 border-2 border-white rounded-xl p-4 shadow-xl">
             <div className="font-bold text-xl pb-4">Recommended Exercises</div>
             {data && (
               <div>
-                {data.exercise.map((single, index) => (
+                {data.exercise.map((single: exercise_type, index: number) => (
                   <div className="pb-4" key={index}>
                     <div className="font-semibold">
                       {index + 1}. {single.exercise_name}
                     </div>
                     <div>
-                      {single.exercise_description.map((singleexe, index) => (
-                        <li className="pt-2" key={index}>
-                          {singleexe}
-                        </li>
-                      ))}
+                      {single.exercise_description.map(
+                        (singleexe: string, index: number) => (
+                          <li className="pt-2" key={index}>
+                            {singleexe}
+                          </li>
+                        )
+                      )}
                     </div>
                   </div>
                 ))}

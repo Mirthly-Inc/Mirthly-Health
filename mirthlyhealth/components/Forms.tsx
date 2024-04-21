@@ -1,11 +1,16 @@
 "use client";
 import { z } from "zod";
 import * as React from "react";
+import { cn } from "@/lib/utils";
+import { analyze_data } from "@/utils/a";
+import { useToast } from "./ui/use-toast";
 import { useForm } from "react-hook-form";
+import { useData } from "@/utils/dataContext";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -21,11 +26,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { analyze_data } from "@/utils/a";
-import { useData } from "@/utils/dataContext";
 
 const FormSchema = z.object({
   mood_level: z.string({
@@ -59,7 +59,9 @@ const FormSchema = z.object({
 
 export function CardWithForm() {
   const [formlevel, setFormlevel] = React.useState(0);
-  // const [loading, setLoading] = React.useState(false);
+  const [Submitted, setSubmitted] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+  const { toast } = useToast();
   const { data, setData } = useData();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -76,10 +78,22 @@ export function CardWithForm() {
   // }
 
   const onSubmit = async (datas: z.infer<typeof FormSchema>) => {
+    if (Submitted) {
+      toast({
+        description: "You can Submit only once.",
+      });
+      return;
+    }
+    setLoading(true);
     console.log("Loading...");
+    setSubmitted(true);
     const res = await analyze_data(datas);
     setData(res);
     console.log(JSON.stringify(res));
+    setLoading(false);
+    toast({
+      description: "Your Health data has been saved successfully.",
+    });
   };
 
   return (
@@ -451,8 +465,15 @@ export function CardWithForm() {
               >
                 Next <ArrowRight className="w-5 ml-2" />
               </Button>
-              <Button type="submit" className={cn({ hidden: formlevel !== 2 })}>
-                Submit
+              <Button
+                type="submit"
+                className={cn(
+                  { hidden: formlevel !== 2 },
+                  { "cursor-progress": loading },
+                  { "cursor-not-allowed": Submitted }
+                )}
+              >
+                {loading ? <div>Saving...</div> : <div>Submit</div>}
               </Button>
             </div>
           </form>

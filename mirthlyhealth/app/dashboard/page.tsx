@@ -1,6 +1,8 @@
 "use client";
 import { NavigationMenuDemo } from "@/components/Navigation";
 import { useData } from "@/utils/dataContext";
+import Link from "next/link";
+import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const data = {
@@ -161,7 +163,10 @@ const Dashboard = () => {
           </div>
           <div className="basis-1/2 flex flex-col gap-6">
             <div className="flex gap-6 h-fit  ">
-              <div className="basis-2/5 border-2 border-white p-4 rounded-xl">
+              <Link
+                href="/tasks"
+                className="basis-2/5 border-2 border-white p-4 rounded-xl cursor-pointer"
+              >
                 <div className="font-semibold text-xl">Tasks List :</div>
                 <div className="pt-2 pl-2">
                   {data.tasks.map((single_task, index) => (
@@ -180,7 +185,7 @@ const Dashboard = () => {
                     </div>
                   ))}
                 </div>
-              </div>
+              </Link>
               <div className="basis-3/5 border-2 border-white p-4 rounded-xl">
                 Happiness Feeling pie Chart or graph
               </div>

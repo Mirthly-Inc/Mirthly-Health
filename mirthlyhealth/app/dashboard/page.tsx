@@ -1,6 +1,7 @@
 "use client";
 import { NavigationMenuDemo } from "@/components/Navigation";
 import { useData } from "@/utils/dataContext";
+import { useEffect, useState } from "react";
 
 const data = {
   tasks: [
@@ -68,8 +69,67 @@ const data = {
     },
   ],
 };
+
+const mentalHealthQuotes = [
+  "You don't have to be everything to everyone. You just have to be you.",
+  "One day at a time. One step at a time.",
+  "You are braver than you believe, stronger than you seem, and smarter than you think.",
+  "Don't be afraid to ask for help. It's a sign of strength, not weakness.",
+  "Your mental health is just as important as your physical health. Take care of yourself.",
+  "You are not alone. Millions of people struggle with mental health issues.",
+  "Every day is a new opportunity. Let go of yesterday.",
+  "Don't compare your journey to others. Everyone walks at their own pace.",
+  "It's okay not to be okay. It's okay to take a break.",
+  "You are worthy of love and happiness, no matter what.",
+  "Your feelings are valid. Don't let anyone tell you otherwise.",
+  "Focus on the things you can control, not the things you can't.",
+  "Setbacks are a part of the journey. Don't give up.",
+  "Be kind to yourself. You are doing the best you can.",
+  "You are capable of amazing things. Believe in yourself.",
+  "It's okay to ask for what you need.",
+  "Celebrate your small victories. Every step forward counts.",
+  "Don't let your past define you. You are stronger than your struggles.",
+  "You are worthy of happiness. Don't settle for anything less.",
+  "You are enough. You are loved. You are important.",
+  "Taking care of your mental health is a lifelong journey. Be patient with yourself.",
+  "There is light at the end of the tunnel. You will get through this.",
+  "Don't be afraid to reach out for help. There are people who care about you.",
+  "Small changes can make a big difference. Start where you are.",
+  "You are not your thoughts or your feelings. You are stronger than them.",
+  "It's okay to cry. Letting your emotions out can be healing.",
+  "Focus on the positive. There is always something good in your life.",
+  "Gratitude is a powerful tool. Take time to appreciate the good things in your life.",
+  "Helping others is a great way to improve your own mental health.",
+  "Surround yourself with positive people who support you.",
+  "Set realistic goals for yourself. Don't try to do too much at once.",
+  "Take care of your physical health. It can have a big impact on your mental health.",
+  "Exercise is a great way to improve your mood and reduce stress.",
+  "Getting enough sleep is essential for mental health.",
+  "Eating a healthy diet can help improve your mood and energy levels.",
+  "Spend time in nature. It can be very calming and grounding.",
+  "Find a hobby or activity that you enjoy. It's important to have fun and relax.",
+  "Mindfulness and meditation can help you focus on the present moment and reduce stress.",
+  "Don't be afraid to say no. It's okay to set boundaries.",
+  "Learn to forgive yourself. Everyone makes mistakes.",
+  "You are not a burden. People who care about you want to help.",
+  "There is hope. Recovery is possible.",
+  "You are stronger than you think. You can overcome anything.",
+  "Believe in yourself. You are capable of achieving anything you set your mind to.",
+  "Don't let mental health hold you back from living your life.",
+  "You are worthy of a happy and fulfilling life.",
+  "Take care of yourself. You matter.",
+  "You are not alone. We are in this together.",
+];
+
 const Dashboard = () => {
   // const { data } = useData();
+  const [quote, setQuote] = useState<string | null>(null);
+
+  useEffect(() => {
+    setQuote(
+      mentalHealthQuotes[Math.floor(Math.random() * mentalHealthQuotes.length)]
+    );
+  }, []);
 
   return (
     <div className="h-screen">
@@ -82,7 +142,7 @@ const Dashboard = () => {
                 <div>Hello Prem</div>
                 <div className="text-xl">Good Morning</div>
               </div>
-              <div>Random Motivational Quote</div>
+              <div>{quote}</div>
             </div>
             <div className="flex gap-6 h-[150px]">
               <div className="p-4 basis-1/3 border-black border-2 rounded-xl">

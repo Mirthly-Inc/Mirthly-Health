@@ -138,33 +138,30 @@ const Dashboard = () => {
         <div className="flex gap-6 h-full">
           <div className="flex flex-col basis-1/2 gap-6">
             <div className="flex justify-between items-center">
-              <div>
-                <div>Hello Prem</div>
-                <div className="text-xl">Good Morning</div>
-              </div>
+              <div className="text-xl">Hello Prem</div>
               <div>{quote}</div>
             </div>
             <div className="flex gap-6 h-[150px]">
-              <div className="p-4 basis-1/3 border-black border-2 rounded-xl">
+              <div className="p-4 basis-1/3 border-white border-2 rounded-xl">
                 <div className="text-xl font-semibold">Stress Level</div>
                 <div className="pt-4 text-5xl font-light">5/10</div>
               </div>
-              <div className="p-4 basis-1/3 border-black border-2 rounded-xl">
+              <div className="p-4 basis-1/3 border-white border-2 rounded-xl">
                 <div className="text-xl font-semibold">Average Sleep</div>
                 <div className="pt-4 text-5xl font-light">6 hours</div>
               </div>
-              <div className="p-4 basis-1/3 border-black border-2 rounded-xl">
+              <div className="p-4 basis-1/3 border-white border-2 rounded-xl">
                 <div className="text-xl font-semibold">Need to discuss</div>
                 <div className="pt-4 text-5xl font-light">NA</div>
               </div>
             </div>
-            <div className="h-full border-black border-2 rounded-xl p-4">
+            <div className="h-full border-white border-2 rounded-xl p-4">
               Stress level Graph
             </div>
           </div>
           <div className="basis-1/2 flex flex-col gap-6">
             <div className="flex gap-6 h-fit  ">
-              <div className="basis-2/5 border-2 border-black p-4 rounded-xl">
+              <div className="basis-2/5 border-2 border-white p-4 rounded-xl">
                 <div className="font-semibold text-xl">Tasks List :</div>
                 <div className="pt-2 pl-2">
                   {data.tasks.map((single_task, index) => (
@@ -184,11 +181,11 @@ const Dashboard = () => {
                   ))}
                 </div>
               </div>
-              <div className="basis-3/5 border-2 border-black p-4 rounded-xl">
+              <div className="basis-3/5 border-2 border-white p-4 rounded-xl">
                 Happiness Feeling pie Chart or graph
               </div>
             </div>
-            <div className="border-2 border-black p-4 rounded-xl h-full ">
+            <div className="border-2 border-white p-4 rounded-xl h-full ">
               Sleep Chart
             </div>
           </div>

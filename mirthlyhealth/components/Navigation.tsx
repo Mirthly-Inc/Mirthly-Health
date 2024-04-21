@@ -22,7 +22,7 @@ export function NavigationMenuDemo() {
   return (
     <nav className="p-4 border-black border-b-2 flex items-center justify-between">
       <div className="">Mirthly Health</div>
-      <div className="flex bg-slate-200 rounded-3xl">
+      <div className="flex bg-slate-700 rounded-3xl">
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
@@ -30,7 +30,7 @@ export function NavigationMenuDemo() {
                 <NavigationMenuLink
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    NavigationLevel === "/dashboard" && "bg-black text-white"
+                    NavigationLevel === "/dashboard" && "bg-white text-black"
                   )}
                   onClick={() => handleclick("/dashboard")}
                 >
@@ -41,7 +41,7 @@ export function NavigationMenuDemo() {
                 <NavigationMenuLink
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    NavigationLevel === "/add" && "bg-black text-white"
+                    NavigationLevel === "/add" && "bg-white text-black"
                   )}
                   onClick={() => handleclick("/add")}
                 >
@@ -53,7 +53,7 @@ export function NavigationMenuDemo() {
                 <NavigationMenuLink
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    NavigationLevel === "/addiction" && "bg-black text-white"
+                    NavigationLevel === "/addiction" && "bg-white text-black"
                   )}
                   onClick={() => handleclick("/addiction")}
                 >
@@ -64,7 +64,7 @@ export function NavigationMenuDemo() {
                 <NavigationMenuLink
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    NavigationLevel === "/tasks" && "bg-black text-white"
+                    NavigationLevel === "/tasks" && "bg-white text-black"
                   )}
                   onClick={() => handleclick("/tasks")}
                 >
@@ -76,7 +76,7 @@ export function NavigationMenuDemo() {
                   className={cn(
                     navigationMenuTriggerStyle(),
                     NavigationLevel === "/recommendations" &&
-                      "bg-black text-white"
+                      "bg-white text-black"
                   )}
                   onClick={() => handleclick("/recommendations")}
                 >

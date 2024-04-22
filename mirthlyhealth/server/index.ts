@@ -30,5 +30,7 @@ export const setUserData = async (user) => {
   await setDoc(doc(db, 'Mirthly-Health', user.uid), {
     dob: user.dob,
     name: user.name,
+    sleep: user.sleep,
+    stress: user.stress,
   });
 };

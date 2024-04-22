@@ -1,14 +1,15 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
 
-// TODO: Replace the following with your app's Firebase project configuration
-// See: https://firebase.google.com/docs/web/learn-more#config-object
 const firebaseConfig = {
-  // ...
+  apiKey: 'AIzaSyD70YB2b2kW5Q9pofO1fvItemlXLFfcHI0',
+  authDomain: 'windowsassistant-8db02.firebaseapp.com',
+  projectId: 'windowsassistant-8db02',
+  storageBucket: 'windowsassistant-8db02.appspot.com',
+  messagingSenderId: '312940286579',
+  appId: '1:312940286579:web:a5b36dd4693ba279819006',
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);

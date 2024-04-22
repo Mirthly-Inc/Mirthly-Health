@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
+import * as React from 'react';
+import Link from 'next/link';
+import { cn } from '@/lib/utils';
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import { usePathname } from "next/navigation";
-import Image from "next/image";
+} from '@/components/ui/navigation-menu';
+import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 export function NavigationMenuDemo() {
   const pathname = usePathname();
@@ -21,74 +21,74 @@ export function NavigationMenuDemo() {
   };
 
   return (
-    <nav className="p-4 border-black border-b-2 flex items-center justify-between">
-      <Link href="/dashboard" className="flex gap-4 items-center">
+    <nav className='p-4 border-black border-b-2 flex items-center justify-between'>
+      <Link href='/dashboard' className='flex gap-4 items-center'>
         <Image
-          className="rounded-md"
-          src="/mirthly.jpg"
+          className='rounded-md'
+          src='/mirthly.jpg'
           height={25}
           width={35}
-          alt="mirthly logo"
+          alt='mirthly logo'
         />
-        <div className="font-medium text-xl">Mirthly Health</div>
+        <div className='font-medium text-xl'>Mirthly Health</div>
       </Link>
-      <div className="flex bg-slate-700 rounded-3xl">
+      <div className='flex bg-slate-700 rounded-3xl'>
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <Link href="/dashboard" legacyBehavior passHref>
+              <Link href='/dashboard' legacyBehavior passHref>
                 <NavigationMenuLink
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    NavigationLevel === "/dashboard" && "bg-white text-black"
+                    NavigationLevel === '/dashboard' && 'bg-white text-black'
                   )}
-                  onClick={() => handleclick("/dashboard")}
+                  onClick={() => handleclick('/dashboard')}
                 >
-                  Overview
+                  Dashboard
                 </NavigationMenuLink>
               </Link>
-              <Link href="/add" legacyBehavior passHref>
+              <Link href='/add' legacyBehavior passHref>
                 <NavigationMenuLink
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    NavigationLevel === "/add" && "bg-white text-black"
+                    NavigationLevel === '/add' && 'bg-white text-black'
                   )}
-                  onClick={() => handleclick("/add")}
+                  onClick={() => handleclick('/add')}
                 >
                   Add Mood
                 </NavigationMenuLink>
               </Link>
 
-              <Link href="/addiction" legacyBehavior passHref>
+              <Link href='/addiction' legacyBehavior passHref>
                 <NavigationMenuLink
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    NavigationLevel === "/addiction" && "bg-white text-black"
+                    NavigationLevel === '/addiction' && 'bg-white text-black'
                   )}
-                  onClick={() => handleclick("/addiction")}
+                  onClick={() => handleclick('/addiction')}
                 >
                   Addiction Control
                 </NavigationMenuLink>
               </Link>
-              <Link href="/tasks" legacyBehavior passHref>
+              <Link href='/tasks' legacyBehavior passHref>
                 <NavigationMenuLink
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    NavigationLevel === "/tasks" && "bg-white text-black"
+                    NavigationLevel === '/tasks' && 'bg-white text-black'
                   )}
-                  onClick={() => handleclick("/tasks")}
+                  onClick={() => handleclick('/tasks')}
                 >
                   Tasks
                 </NavigationMenuLink>
               </Link>
-              <Link href="/recommendations" legacyBehavior passHref>
+              <Link href='/recommendations' legacyBehavior passHref>
                 <NavigationMenuLink
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    NavigationLevel === "/recommendations" &&
-                      "bg-white text-black"
+                    NavigationLevel === '/recommendations' &&
+                      'bg-white text-black'
                   )}
-                  onClick={() => handleclick("/recommendations")}
+                  onClick={() => handleclick('/recommendations')}
                 >
                   Recommendations
                 </NavigationMenuLink>
@@ -97,14 +97,14 @@ export function NavigationMenuDemo() {
           </NavigationMenuList>
         </NavigationMenu>
       </div>
-      <div className="">Mirthly Health</div>
+      <div className=''>Mirthly Health</div>
     </nav>
   );
 }
 
 const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
+  React.ElementRef<'a'>,
+  React.ComponentPropsWithoutRef<'a'>
 >(({ className, title, children, ...props }, ref) => {
   return (
     <li>
@@ -112,13 +112,13 @@ const ListItem = React.forwardRef<
         <a
           ref={ref}
           className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
             className
           )}
           {...props}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <div className='text-sm font-medium leading-none'>{title}</div>
+          <p className='line-clamp-2 text-sm leading-snug text-muted-foreground'>
             {children}
           </p>
         </a>
@@ -126,4 +126,4 @@ const ListItem = React.forwardRef<
     </li>
   );
 });
-ListItem.displayName = "ListItem";
+ListItem.displayName = 'ListItem';

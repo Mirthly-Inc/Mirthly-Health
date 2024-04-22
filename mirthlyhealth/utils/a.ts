@@ -1,8 +1,8 @@
-import { PromptTemplate } from '@langchain/core/prompts';
-import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
-import { RunnableSequence } from '@langchain/core/runnables';
-import { z } from 'zod';
-import { StructuredOutputParser } from 'langchain/output_parsers';
+import { PromptTemplate } from "@langchain/core/prompts";
+import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
+import { RunnableSequence } from "@langchain/core/runnables";
+import { z } from "zod";
+import { StructuredOutputParser } from "langchain/output_parsers";
 
 interface inputtype {
   Focus_and_Concentration: string;
@@ -20,7 +20,7 @@ const parser = StructuredOutputParser.fromZodSchema(
     stress_level: z
       .number()
       .describe(
-        'Give a stress level out of 10 for the user current submission, The level should be a whole number.'
+        "Give a stress level out of 10 for the user current submission, The level should be a whole number."
       ),
     tasks: z.array(
       z.object({
@@ -34,10 +34,10 @@ const parser = StructuredOutputParser.fromZodSchema(
             z
               .string()
               .describe(
-                'Exactly 4 points explaining the steps of the short form.'
+                "Exactly 3 points explaining the steps of the short form."
               )
           )
-          .length(4),
+          .length(3),
       })
     ),
     exercise: z
@@ -46,13 +46,13 @@ const parser = StructuredOutputParser.fromZodSchema(
           exercise_name: z
             .string()
             .describe(
-              'Give me only the name of Exercises to improve mental health.'
+              "Give me only the name of Exercises to improve mental health."
             ),
           exercise_description: z
             .array(
               z
                 .string()
-                .describe('Give me 3 steps to do the corresponding exercise.')
+                .describe("Give me 3 steps to do the corresponding exercise.")
             )
             .length(3),
         })
@@ -61,8 +61,8 @@ const parser = StructuredOutputParser.fromZodSchema(
   })
 );
 const model = new ChatGoogleGenerativeAI({
-  apiKey: 'AIzaSyCmYbHz_PvndyICs2n7lvrpCGoiN3cAPzo',
-  model: 'gemini-pro',
+  apiKey: "AIzaSyCmYbHz_PvndyICs2n7lvrpCGoiN3cAPzo",
+  model: "gemini-pro",
   maxOutputTokens: 2048,
 });
 export const analyze_data = async (input: inputtype) => {
@@ -78,7 +78,7 @@ export const analyze_data = async (input: inputtype) => {
   mood_level: ${input.mood_level}`;
   const chain = RunnableSequence.from([
     PromptTemplate.fromTemplate(
-      'Answer the users question as best as possible.\n{format_instructions}\n{question}'
+      "Answer the users question as best as possible.\n{format_instructions}\n{question}"
     ),
     model,
     parser,

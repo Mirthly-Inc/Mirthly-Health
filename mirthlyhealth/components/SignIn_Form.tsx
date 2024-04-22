@@ -17,16 +17,12 @@ import {
 import { Input } from '@/components/ui/input';
 import { ArrowRight } from 'lucide-react';
 
-interface loginproptype {
-  islogin?: boolean;
-}
-
 const formSchema = z.object({
   email: z.string({ required_error: 'Please Enter Email Address' }).email(),
   password: z.string().min(6, 'Password should be minimum 6 characters'),
 });
 
-export function SignInForm({ islogin }: loginproptype) {
+export function SignInForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -36,7 +32,7 @@ export function SignInForm({ islogin }: loginproptype) {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    islogin ? console.log('Logging in') : console.log('New User');
+    console.log(values);
   }
   return (
     <Form {...form}>
@@ -72,7 +68,7 @@ export function SignInForm({ islogin }: loginproptype) {
           )}
         />
         <Button type='submit'>
-          {islogin ? <div>Welcome Back</div> : <div>Start Your journey</div>}{' '}
+          Welcome Back
           <ArrowRight className='ml-2' />
         </Button>
       </form>

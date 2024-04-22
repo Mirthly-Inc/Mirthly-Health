@@ -1,15 +1,19 @@
-"use client";
+'use client';
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from 'react';
 
 interface DataContextValue {
   data: any | null;
   setData: (data: any) => void;
+  user: any | null;
+  setUser: (data: any) => void;
 }
 
 const DataContext = createContext<DataContextValue>({
   data: null,
   setData: () => {},
+  user: null,
+  setUser: () => {},
 });
 
 export const DataProvider = ({ children }: { children: React.ReactNode }) => {
@@ -26,7 +30,7 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
 export const useData = () => {
   const context = useContext(DataContext);
   if (!context) {
-    throw new Error("useData must be used within a DataProvider");
+    throw new Error('useData must be used within a DataProvider');
   }
   return context;
 };

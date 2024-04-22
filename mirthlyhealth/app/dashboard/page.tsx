@@ -1,5 +1,6 @@
 'use client';
 import { NavigationMenuDemo } from '@/components/Navigation';
+import { fetchAll } from '@/server';
 import { useData } from '@/utils/dataContext';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
@@ -122,15 +123,25 @@ const mentalHealthQuotes = [
   'Take care of yourself. You matter.',
   'You are not alone. We are in this together.',
 ];
-
 const Dashboard = () => {
-  // const { data } = useData();
+  const [record, setRecord] = useState<any | null>(null);
+  const { user } = useData();
   const [quote, setQuote] = useState<string | null>(null);
-
   useEffect(() => {
     setQuote(
       mentalHealthQuotes[Math.floor(Math.random() * mentalHealthQuotes.length)]
     );
+    const response = async () => {
+      try {
+        const data = await fetchAll(user);
+        if (data) {
+          setRecord(data);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    response();
   }, []);
 
   return (
@@ -140,7 +151,7 @@ const Dashboard = () => {
         <div className='flex gap-6 h-full'>
           <div className='flex flex-col basis-1/2 gap-6'>
             <div className='flex gap-4 items-center'>
-              <div className='text-xl'>Hello Prem</div>
+              <div className='text-xl'>Hello {record.name}</div>
               <div>{quote}</div>
             </div>
             <div className='flex gap-6 h-[150px]'>

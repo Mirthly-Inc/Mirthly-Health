@@ -1,24 +1,24 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { doc, setDoc, getFirestore } from 'firebase/firestore';
-import { User } from 'lucide-react';
+import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc, getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyD70YB2b2kW5Q9pofO1fvItemlXLFfcHI0',
-  authDomain: 'windowsassistant-8db02.firebaseapp.com',
-  projectId: 'windowsassistant-8db02',
-  storageBucket: 'windowsassistant-8db02.appspot.com',
-  messagingSenderId: '312940286579',
-  appId: '1:312940286579:web:a5b36dd4693ba279819006',
+  apiKey: "AIzaSyD70YB2b2kW5Q9pofO1fvItemlXLFfcHI0",
+  authDomain: "windowsassistant-8db02.firebaseapp.com",
+  projectId: "windowsassistant-8db02",
+  storageBucket: "windowsassistant-8db02.appspot.com",
+  messagingSenderId: "312940286579",
+  appId: "1:312940286579:web:a5b36dd4693ba279819006",
 };
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const db = getFirestore(app);
 
-export const login = (email, password) =>
+export const login = (email, password, name, age) =>
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
+      setUserData(user.uid, name, age);
       return user;
     })
     .catch((error) => {
@@ -26,11 +26,11 @@ export const login = (email, password) =>
       const errorMessage = error.message;
     });
 
-export const setUserData = async (user) => {
-  await setDoc(doc(db, 'Mirthly-Health', user.uid), {
-    dob: user.dob,
-    name: user.name,
-    sleep: user.sleep,
-    stress: user.stress,
+export const setUserData = async (id, name, age) => {
+  await setDoc(doc(db, "Mirthly-Health", id), {
+    age: age,
+    name: name,
+    sleep: [],
+    stress: [],
   });
 };

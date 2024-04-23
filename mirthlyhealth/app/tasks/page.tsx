@@ -91,7 +91,7 @@ const page = () => {
   useEffect(() => {
     const response = async () => {
       try {
-        const res = await fetchAll("MpYqX03vy4Q5lrKZZAq77uwOK9k1");
+        const res = await fetchAll(user);
         if (res) {
           if (!data) {
             setData(res);
@@ -103,7 +103,7 @@ const page = () => {
       }
     };
     response();
-  }, []);
+  }, [data, setData, user]);
   return (
     <div className="h-screen">
       <NavigationMenuDemo />

@@ -1,7 +1,9 @@
 "use client";
 
 import { NavigationMenuDemo } from "@/components/Navigation";
+import { fetchAll } from "@/server";
 import { useData } from "@/utils/dataContext";
+import { useEffect } from "react";
 
 // const data = {
 //   exercise: [
@@ -84,7 +86,24 @@ interface tasks_type {
 
 const page = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { data } = useData();
+  const { data, user, setData } = useData();
+
+  useEffect(() => {
+    const response = async () => {
+      try {
+        const res = await fetchAll("MpYqX03vy4Q5lrKZZAq77uwOK9k1");
+        if (res) {
+          if (!data) {
+            setData(res);
+            console.log(res);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    response();
+  }, []);
   return (
     <div className="h-screen">
       <NavigationMenuDemo />

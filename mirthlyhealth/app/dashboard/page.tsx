@@ -5,6 +5,7 @@ import { useData } from "@/utils/dataContext";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import StressChart from "@/components/StressChart";
 
 const data = {
   tasks: [
@@ -189,6 +190,7 @@ const Dashboard = () => {
             </div>
             <div className="h-full border-white border-2 rounded-xl p-4">
               Stress level Graph
+              {record && <StressChart data={record.stress} />}
             </div>
           </div>
           <div className="basis-1/2 flex flex-col gap-6">

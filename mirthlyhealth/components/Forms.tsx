@@ -26,7 +26,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { setUserData, updatedata } from "@/server";
+import { updatedata } from "@/server";
 
 const FormSchema = z.object({
   mood_level: z.string({

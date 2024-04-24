@@ -62,7 +62,6 @@ const Dashboard = () => {
   const router = useRouter();
   const [record, setRecord] = useState<any | null>(null);
   const { user, data,setData } = useData();
-  const [userid, setUserid] = useState<any | null>(null);
   const [quote, setQuote] = useState<string | null>(null);
   const [rest, setRest] = useState<any | null>(null);
   const [depression, setDepression] = useState<any | null>(null);
@@ -75,16 +74,12 @@ const Dashboard = () => {
           else {
             let sum = 0;
             res.sleep.forEach((itr) => {
-              if (!(itr.sleep_level === '')) {
                 sum += Number(itr.sleep_level);
-              }
             });
             const avgSleep = sum / (res.sleep.length - 1);
             sum = 0;
             res.stress.forEach((itr) => {
-              if (!(itr.stress_level === '')) {
                 sum += Number(itr.stress_level);
-              }
             });
             const avgStress = sum / (res.stress.length - 1);
 
@@ -99,7 +94,6 @@ const Dashboard = () => {
       }
     };
     response();
-    setUserid(user);
     setQuote(
       mentalHealthQuotes[Math.floor(Math.random() * mentalHealthQuotes.length)]
     );
@@ -147,7 +141,7 @@ const Dashboard = () => {
                 <div className='font-semibold text-xl'>Tasks List :</div>
                 <div className='pt-2 pl-2'>
                   {record &&
-                    record.tasks.map((single_task, index) => (
+                    record.tasks.map((single_task, index:number) => (
                       <div key={index} className='pb-2'>
                         {single_task.shortform}
                       </div>
@@ -158,7 +152,7 @@ const Dashboard = () => {
                 </div>
                 <div className='pt-2 pl-2'>
                   {record &&
-                    record.exercise.map((single_exercise, index) => (
+                    record.exercise.map((single_exercise, index:number) => (
                       <div key={index} className='pb-2'>
                         {single_exercise.exercise_name}
                       </div>

@@ -1,4 +1,3 @@
-import { useData } from '@/utils/dataContext';
 import { initializeApp } from 'firebase/app';
 import {
   getAuth,
@@ -25,7 +24,7 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const db = getFirestore(app);
 
-export const signUp = (email, password, name, age) =>
+export const signUp = (email:string, password:string, name:string, age:string) =>
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
@@ -43,7 +42,7 @@ export const signUp = (email, password, name, age) =>
       const errorMessage = error.message;
     });
 
-export const login = (email, password) =>
+export const login = (email:string, password:string) =>
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
@@ -52,10 +51,9 @@ export const login = (email, password) =>
     .catch((error) => {
       const errorCode = error.code;
       console.log(errorCode);
-      const errorMessage = error.message;
     });
 
-export const setUserData = async (id, name, age, sleep, stress) => {
+export const setUserData = async (id:string, name:string, age:string, sleep:[{}], stress:[{}]) => {
   await setDoc(doc(db, 'Mirthly-Health', id), {
     age: age,
     name: name,
@@ -72,7 +70,7 @@ export const setUserData = async (id, name, age, sleep, stress) => {
   });
 };
 
-export const fetchAll = async (userid) => {
+export const fetchAll = async (userid:string) => {
   const docRef = doc(db, 'Mirthly-Health', userid);
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
@@ -82,16 +80,25 @@ export const fetchAll = async (userid) => {
   }
 };
 
-export const updatedata = async (userid, analysis) => {
+export const updatedata = async (userid:string, analysis) => {
   try {
     const docRef = doc(db, 'Mirthly-Health', userid);
     const docSnap = await getDoc(docRef);
     const data = docSnap.data();
-    const new_stress = [
-      ...data.stress,
-      { stress_level: analysis.stress_level },
-    ];
-    const new_sleep = [...data.sleep, { sleep_level: analysis.sleep_level }];
+    let new_stress = [];
+    if(data?.stress[0].stress_level===""){
+      new_stress = [{stress_level:analysis.stress_level}];
+    }else{
+      new_stress = [
+      ...data?.stress,
+      { stress_level: analysis.stress_level }];
+    }
+    let new_sleep = [];
+    if(data?.sleep[0].sleep_level===""){
+      new_sleep = [{sleep_level:analysis.sleep_level}]
+    }else{
+      new_sleep = [...data?.sleep, { sleep_level: analysis.sleep_level }];
+    }
     const new_task = analysis.tasks;
     const new_exercise = analysis.exercise;
     await updateDoc(docRef, {

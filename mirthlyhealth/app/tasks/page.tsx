@@ -2,90 +2,12 @@
 
 import { NavigationMenuDemo } from "@/components/Navigation";
 import { fetchAll } from "@/server";
+import { exercise_type, task_type } from "@/utils/Types";
 import { useData } from "@/utils/dataContext";
 import { useEffect } from "react";
 
-// const data = {
-//   exercise: [
-//     {
-//       exercise_name: "Deep Breathing",
-//       exercise_description: [
-//         "Take a deep breath in through your nose for 4 seconds.",
-//         "Hold your breath for 7 seconds.",
-//         "Exhale slowly through your mouth for 8 seconds.",
-//         "Repeat for 5-10 minutes.",
-//       ],
-//     },
-
-//     {
-//       exercise_name: "Deep Breathing",
-//       exercise_description: [
-//         "Take a deep breath in through your nose for 4 seconds.",
-//         "Hold your breath for 7 seconds.",
-//         "Exhale slowly through your mouth for 8 seconds.",
-//         "Repeat for 5-10 minutes.",
-//       ],
-//     },
-//     {
-//       exercise_name: "Deep Breathing",
-//       exercise_description: [
-//         "Take a deep breath in through your nose for 4 seconds.",
-//         "Hold your breath for 7 seconds.",
-//         "Exhale slowly through your mouth for 8 seconds.",
-//         "Repeat for 5-10 minutes.",
-//       ],
-//     },
-//   ],
-//   tasks: [
-//     {
-//       shortform: "Breathe",
-//       longform: [
-//         "Inhale slowly through your nose for 4 counts.",
-//         "Hold your breath for 7 counts.",
-//         "Exhale slowly through your mouth for 8 counts.",
-//         "Repeat for 5-10 minutes.",
-//       ],
-//     },
-//     {
-//       shortform: "Breathe",
-//       longform: [
-//         "Inhale slowly through your nose for 4 counts.",
-//         "Hold your breath for 7 counts.",
-//         "Exhale slowly through your mouth for 8 counts.",
-//         "Repeat for 5-10 minutes.",
-//       ],
-//     },
-//     {
-//       shortform: "Breathe",
-//       longform: [
-//         "Inhale slowly through your nose for 4 counts.",
-//         "Hold your breath for 7 counts.",
-//         "Exhale slowly through your mouth for 8 counts.",
-//         "Repeat for 5-10 minutes.",
-//       ],
-//     },
-//     {
-//       shortform: "Breathe",
-//       longform: [
-//         "Inhale slowly through your nose for 4 counts.",
-//         "Hold your breath for 7 counts.",
-//         "Exhale slowly through your mouth for 8 counts.",
-//         "Repeat for 5-10 minutes.",
-//       ],
-//     },
-//   ],
-// };
-interface exercise_type {
-  exercise_name: string;
-  exercise_description: string[];
-}
-interface tasks_type {
-  shortform: string;
-  longform: string[];
-}
 
 const page = () => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data, user, setData } = useData();
 
   useEffect(() => {
@@ -111,7 +33,7 @@ const page = () => {
           <div className="basis-2/3">
             <div className="font-bold text-xl pb-4">Your Tasks:</div>
             <div className="grid grid-flow-row-dense gap-6 grid-cols-2 grid-row-2 ">
-              {data.tasks.map((solo: tasks_type, index: number) => (
+              {data.tasks.map((solo: task_type, index: number) => (
                 <div
                   className="border-2 border-white rounded-xl p-4 shadow-xl"
                   key={index}

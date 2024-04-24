@@ -8,6 +8,8 @@ import { useData } from '@/utils/dataContext';
 import StressChart from '@/components/StressChart';
 import { NavigationMenuDemo } from '@/components/Navigation';
 import SleepBarChart from '@/components/SleepBarChart';
+import MoodPie from '@/components/MoodPie';
+import { exercise_type, task_type } from '@/utils/Types';
 
 const mentalHealthQuotes = [
   "You don't have to be everything to everyone. You just have to be you.",
@@ -68,6 +70,7 @@ const Dashboard = () => {
   const [rest, setRest] = useState<any | null>(null);
   const [depression, setDepression] = useState<any | null>(null);
   const [loading ,setLoading] = useState<boolean>(false);
+  const [moodpiechart, setMoodpiechart] = useState<any|null>(null);
 
   useEffect(() => {
     setLoading(true);
@@ -78,13 +81,13 @@ const Dashboard = () => {
           if (res.flag === false) router.push('/add');
           else {
             let sum = 0;
-            res.sleep.forEach((itr) => {
+            res.sleep.forEach((itr:{sleep_level:any|number|string}) => {
               sum += Number(itr.sleep_level);
             });
             const avgSleep = sum / (res.sleep.length - 1);
-            let moodpie=[{low:0},{normal:0},{good:0}]
+            let moodpie :[{low:number},{normal:number},{good:number}]=[{low:0},{normal:0},{good:0}]
             sum = 0;
-            res.stress.forEach((itr) => {
+            res.stress.forEach((itr:{stress_level:any|number|string}) => {
               let temp = Number(itr.stress_level);
               if(temp>0 && temp<=3){
                 moodpie[0].low = moodpie[0].low +1;
@@ -93,10 +96,10 @@ const Dashboard = () => {
               }else{
                 moodpie[2].good = moodpie[2].good +1;
               }
-                sum += temp;
+              sum += temp;
             });
             const avgStress = sum / (res.stress.length - 1);
-
+            setMoodpiechart(moodpie);
             setRest(avgSleep.toFixed(1));
             setDepression(avgStress.toFixed(1));
             setRecord(res);
@@ -155,7 +158,7 @@ const Dashboard = () => {
                 <div className='font-semibold text-xl'>Tasks List :</div>
                 <div className='pt-2 pl-2'>
                   {record &&
-                    record.tasks.map((single_task, index:number) => (
+                    record.tasks.map((single_task:task_type, index:number) => (
                       <div key={index} className='pb-2'>
                         {single_task.shortform}
                       </div>
@@ -166,7 +169,7 @@ const Dashboard = () => {
                 </div>
                 <div className='pt-2 pl-2'>
                   {record &&
-                    record.exercise.map((single_exercise, index:number) => (
+                    record.exercise.map((single_exercise:exercise_type, index:number) => (
                       <div key={index} className='pb-2'>
                         {single_exercise.exercise_name}
                       </div>
@@ -175,6 +178,7 @@ const Dashboard = () => {
               </Link>
               <div className='basis-3/5 border-2 border-white p-4 rounded-xl'>
                 Happiness Feeling pie Chart or graph
+                {record && <MoodPie data={moodpiechart}/>}
               </div>
             </div>
             <div className='border-2 border-white p-4 rounded-xl h-full '>

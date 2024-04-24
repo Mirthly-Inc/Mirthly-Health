@@ -6,7 +6,7 @@ import { LineChart, Line, Tooltip, Legend } from "recharts";
 const StressChart = ({ data }) => {
   return (
     <div className="p-6 text-white">
-      <LineChart width={600} height={300}>
+      <LineChart width={600} height={300} data={data}>
         <Line type="monotone" dataKey="stress_level" stroke="#555" />
         <Tooltip />
         <Legend />

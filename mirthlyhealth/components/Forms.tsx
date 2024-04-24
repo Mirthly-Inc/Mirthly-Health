@@ -163,7 +163,6 @@ export function CardWithForm() {
                         <SelectItem value="Sometimes">Sometimes</SelectItem>
                         <SelectItem value="Rarely">Rarely</SelectItem>
                         <SelectItem value="No">No</SelectItem>
-                        <SelectItem value="Poor">Poor</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />

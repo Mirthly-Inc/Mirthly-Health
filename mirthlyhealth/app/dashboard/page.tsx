@@ -1,11 +1,13 @@
 'use client';
-import { NavigationMenuDemo } from '@/components/Navigation';
-import { fetchAll } from '@/server';
-import { useData } from '@/utils/dataContext';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
+import { fetchAll } from '@/server';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useData } from '@/utils/dataContext';
 import StressChart from '@/components/StressChart';
+import { NavigationMenuDemo } from '@/components/Navigation';
+import SleepBarChart from '@/components/SleepBarChart';
 
 const mentalHealthQuotes = [
   "You don't have to be everything to everyone. You just have to be you.",
@@ -65,7 +67,10 @@ const Dashboard = () => {
   const [quote, setQuote] = useState<string | null>(null);
   const [rest, setRest] = useState<any | null>(null);
   const [depression, setDepression] = useState<any | null>(null);
+  const [loading ,setLoading] = useState<boolean>(false);
+
   useEffect(() => {
+    setLoading(true);
     const response = async () => {
       try {
         const res = await fetchAll(user);
@@ -74,12 +79,21 @@ const Dashboard = () => {
           else {
             let sum = 0;
             res.sleep.forEach((itr) => {
-                sum += Number(itr.sleep_level);
+              sum += Number(itr.sleep_level);
             });
             const avgSleep = sum / (res.sleep.length - 1);
+            let moodpie=[{low:0},{normal:0},{good:0}]
             sum = 0;
             res.stress.forEach((itr) => {
-                sum += Number(itr.stress_level);
+              let temp = Number(itr.stress_level);
+              if(temp>0 && temp<=3){
+                moodpie[0].low = moodpie[0].low +1;
+              }else if(temp>3 && temp<=7){
+                moodpie[1].normal = moodpie[1].normal +1;
+              }else{
+                moodpie[2].good = moodpie[2].good +1;
+              }
+                sum += temp;
             });
             const avgStress = sum / (res.stress.length - 1);
 
@@ -96,6 +110,7 @@ const Dashboard = () => {
     setQuote(
       mentalHealthQuotes[Math.floor(Math.random() * mentalHealthQuotes.length)]
     );
+    setLoading(false)
   }, [data, router, user]);
 
   return (
@@ -109,13 +124,13 @@ const Dashboard = () => {
               <div>{quote}</div>
             </div>
             <div className='flex gap-6 h-[150px]'>
-              <div className='p-4 basis-1/3 border-white border-2 rounded-xl'>
+              <div className={cn('p-4 basis-1/3 border-white border-2 rounded-xl',{"animate-pulse":loading===true} )}>
                 <div className='text-xl font-semibold'>Stress Level</div>
                 <div className='pt-4 text-5xl font-light'>
                   {record && depression}/10
                 </div>
               </div>
-              <div className='p-4 basis-1/3 border-white border-2 rounded-xl'>
+              <div className={cn('p-4 basis-1/3 border-white border-2 rounded-xl',{"animate-pulse":loading===true} )}>
                 <div className='text-xl font-semibold'>Sleep Score</div>
                 <div className='pt-4 text-5xl font-light'>
                   {record && rest}/10
@@ -132,7 +147,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className='basis-1/2 flex flex-col gap-6'>
-            <div className='flex gap-6 h-fit  '>
+            <div className='flex gap-6 h-fit'>
               <Link
                 href='/tasks'
                 className='basis-2/5 border-2 border-white p-4 rounded-xl cursor-pointer'
@@ -164,6 +179,7 @@ const Dashboard = () => {
             </div>
             <div className='border-2 border-white p-4 rounded-xl h-full '>
               Sleep Chart
+              {record && <SleepBarChart data={record.sleep}/>}
             </div>
           </div>
         </div>

@@ -69,8 +69,8 @@ const Dashboard = () => {
   const [quote, setQuote] = useState<string | null>(null);
   const [rest, setRest] = useState<any | null>(null);
   const [depression, setDepression] = useState<any | null>(null);
-  const [loading ,setLoading] = useState<boolean>(false);
-  const [moodpiechart, setMoodpiechart] = useState<any|null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [moodpiechart, setMoodpiechart] = useState<any | null>(null);
 
   useEffect(() => {
     setLoading(true);
@@ -81,24 +81,29 @@ const Dashboard = () => {
           if (res.flag === false) router.push('/add');
           else {
             let sum = 0;
-            res.sleep.forEach((itr:{sleep_level:any|number|string}) => {
+            res.sleep.forEach((itr) => {
               sum += Number(itr.sleep_level);
             });
-            const avgSleep = sum / (res.sleep.length - 1);
-            let moodpie :[{low:number},{normal:number},{good:number}]=[{low:0},{normal:0},{good:0}]
+
+            const avgSleep = sum / res.sleep.length;
+            let moodpie: [
+              { low: number },
+              { normal: number },
+              { good: number }
+            ] = [{ low: 0 }, { normal: 0 }, { good: 0 }];
             sum = 0;
-            res.stress.forEach((itr:{stress_level:any|number|string}) => {
+            res.stress.forEach((itr) => {
               let temp = Number(itr.stress_level);
-              if(temp>0 && temp<=3){
-                moodpie[0].low = moodpie[0].low +1;
-              }else if(temp>3 && temp<=7){
-                moodpie[1].normal = moodpie[1].normal +1;
-              }else{
-                moodpie[2].good = moodpie[2].good +1;
+              if (temp > 0 && temp <= 3) {
+                moodpie[0].low = moodpie[0].low + 1;
+              } else if (temp > 3 && temp <= 7) {
+                moodpie[1].normal = moodpie[1].normal + 1;
+              } else {
+                moodpie[2].good = moodpie[2].good + 1;
               }
               sum += temp;
             });
-            const avgStress = sum / (res.stress.length - 1);
+            const avgStress = sum / res.stress.length;
             setMoodpiechart(moodpie);
             setRest(avgSleep.toFixed(1));
             setDepression(avgStress.toFixed(1));
@@ -113,7 +118,7 @@ const Dashboard = () => {
     setQuote(
       mentalHealthQuotes[Math.floor(Math.random() * mentalHealthQuotes.length)]
     );
-    setLoading(false)
+    setLoading(false);
   }, [data, router, user]);
 
   return (
@@ -127,13 +132,13 @@ const Dashboard = () => {
               <div>{quote}</div>
             </div>
             <div className='flex gap-6 h-[150px]'>
-              <div className={cn('p-4 basis-1/3 border-white border-2 rounded-xl',{"animate-pulse":loading===true} )}>
+              <div className='p-4 basis-1/3 border-white border-2 rounded-xl'>
                 <div className='text-xl font-semibold'>Stress Level</div>
                 <div className='pt-4 text-5xl font-light'>
                   {record && depression}/10
                 </div>
               </div>
-              <div className={cn('p-4 basis-1/3 border-white border-2 rounded-xl',{"animate-pulse":loading===true} )}>
+              <div className='p-4 basis-1/3 border-white border-2 rounded-xl'>
                 <div className='text-xl font-semibold'>Sleep Score</div>
                 <div className='pt-4 text-5xl font-light'>
                   {record && rest}/10
@@ -158,32 +163,36 @@ const Dashboard = () => {
                 <div className='font-semibold text-xl'>Tasks List :</div>
                 <div className='pt-2 pl-2'>
                   {record &&
-                    record.tasks.map((single_task:task_type, index:number) => (
-                      <div key={index} className='pb-2'>
-                        {single_task.shortform}
-                      </div>
-                    ))}
+                    record.tasks.map(
+                      (single_task: task_type, index: number) => (
+                        <div key={index} className='pb-2'>
+                          {single_task.shortform}
+                        </div>
+                      )
+                    )}
                 </div>
                 <div className='font-semibold text-xl pt-4'>
                   Exercises List :
                 </div>
                 <div className='pt-2 pl-2'>
                   {record &&
-                    record.exercise.map((single_exercise:exercise_type, index:number) => (
-                      <div key={index} className='pb-2'>
-                        {single_exercise.exercise_name}
-                      </div>
-                    ))}
+                    record.exercise.map(
+                      (single_exercise: exercise_type, index: number) => (
+                        <div key={index} className='pb-2'>
+                          {single_exercise.exercise_name}
+                        </div>
+                      )
+                    )}
                 </div>
               </Link>
               <div className='basis-3/5 border-2 border-white p-4 rounded-xl'>
                 Happiness Feeling pie Chart or graph
-                {record && <MoodPie data={moodpiechart}/>}
+                {/* {record && <MoodPie data={moodpiechart} />} */}
               </div>
             </div>
             <div className='border-2 border-white p-4 rounded-xl h-full '>
               Sleep Chart
-              {record && <SleepBarChart data={record.sleep}/>}
+              {record && <SleepBarChart data={record.sleep} />}
             </div>
           </div>
         </div>

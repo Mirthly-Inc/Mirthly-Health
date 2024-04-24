@@ -95,7 +95,6 @@ const page = () => {
         if (res) {
           if (!data) {
             setData(res);
-            console.log(res);
           }
         }
       } catch (error) {

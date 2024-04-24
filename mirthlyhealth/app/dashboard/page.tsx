@@ -61,7 +61,7 @@ const mentalHealthQuotes = [
 const Dashboard = () => {
   const router = useRouter();
   const [record, setRecord] = useState<any | null>(null);
-  const { user, data } = useData();
+  const { user, data,setData } = useData();
   const [userid, setUserid] = useState<any | null>(null);
   const [quote, setQuote] = useState<string | null>(null);
   const [rest, setRest] = useState<any | null>(null);
@@ -91,6 +91,7 @@ const Dashboard = () => {
             setRest(avgSleep.toFixed(1));
             setDepression(avgStress.toFixed(1));
             setRecord(res);
+            setData(res);
           }
         }
       } catch (error) {

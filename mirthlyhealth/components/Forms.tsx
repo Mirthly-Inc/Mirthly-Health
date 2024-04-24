@@ -26,7 +26,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { updatedata } from "@/server";
+import { setUserData, updatedata } from "@/server";
 
 const FormSchema = z.object({
   mood_level: z.string({
@@ -63,7 +63,7 @@ export function CardWithForm() {
   const [Submitted, setSubmitted] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const { toast } = useToast();
-  const { user } = useData();
+  const { user,setData } = useData();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
@@ -89,7 +89,7 @@ export function CardWithForm() {
     console.log("Loading...");
     setSubmitted(true);
     const res = await analyze_data(datas);
-    // setData(res);
+    setData(res)
     setLoading(false);
     toast({
       description: "Your Health data has been saved successfully.",

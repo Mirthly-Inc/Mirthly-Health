@@ -4,7 +4,7 @@ This project aims to develop a web application that utilizes generative AI to pr
 
 ## Project Goals
 
-- [ ] Develop a user-friendly questionnaire to assess mental state and user preferences.
+- [x] Develop a user-friendly questionnaire to assess mental state and user preferences.
 - [ ] Track user progress and provide feedback to encourage continued engagement.
 - [ ] Provide Relaxation techniques and Guided meditations.
 - [ ] Provide Audio Support.

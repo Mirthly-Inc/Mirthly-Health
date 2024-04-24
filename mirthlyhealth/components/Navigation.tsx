@@ -59,17 +59,6 @@ export function NavigationMenuDemo() {
                 </NavigationMenuLink>
               </Link>
 
-              <Link href='/addiction' legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={cn(
-                    navigationMenuTriggerStyle(),
-                    NavigationLevel === '/addiction' && 'bg-white text-black'
-                  )}
-                  onClick={() => handleclick('/addiction')}
-                >
-                  Addiction Control
-                </NavigationMenuLink>
-              </Link>
               <Link href='/tasks' legacyBehavior passHref>
                 <NavigationMenuLink
                   className={cn(
@@ -79,18 +68,6 @@ export function NavigationMenuDemo() {
                   onClick={() => handleclick('/tasks')}
                 >
                   Tasks
-                </NavigationMenuLink>
-              </Link>
-              <Link href='/recommendations' legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={cn(
-                    navigationMenuTriggerStyle(),
-                    NavigationLevel === '/recommendations' &&
-                      'bg-white text-black'
-                  )}
-                  onClick={() => handleclick('/recommendations')}
-                >
-                  Recommendations
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>

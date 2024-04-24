@@ -11,8 +11,6 @@ import SleepBarChart from "@/components/SleepBarChart";
 import MoodPie from "@/components/MoodPie";
 import { exercise_type, task_type } from "@/utils/Types";
 import React from "react";
-import backgroundimage from "../../public/afdssd.jpg";
-import Image from "next/image";
 
 const mentalHealthQuotes = [
   "You don't have to be everything to everyone. You just have to be you.",
@@ -135,12 +133,6 @@ const Dashboard = () => {
 
   return (
     <div className="h-screen">
-      <Image
-        src="/afdssd.jpg"
-        alt="Background Image"
-        layout="fill"
-        className="-z-10"
-      />
       <NavigationMenuDemo />
       <div className="p-6 h-[90%] z-200">
         <div className="flex gap-6 h-full">
@@ -150,26 +142,26 @@ const Dashboard = () => {
               <div>{quote}</div>
             </div>
             <div className="flex gap-6 h-[150px]">
-              <div className="p-4 basis-1/3 border-white border-2 rounded-xl shadow-xl bg-[#1d1d1d]">
+              <div className="p-4 basis-1/3 card relative rounded-xl shadow-xl bg-[#020817]">
                 <div className="text-xl font-semibold">Stress Level</div>
                 <div className="pt-4 text-5xl font-light">
                   {record && depression}/10
                 </div>
               </div>
-              <div className="p-4 basis-1/3 border-white border-2 rounded-xl">
+              <div className="p-4 basis-1/3 card relative rounded-xl bg-[#020817]">
                 <div className="text-xl font-semibold">Sleep Score</div>
                 <div className="pt-4 text-5xl font-light">
                   {record && rest}/10
                 </div>
               </div>
-              <div className="p-4 basis-1/3 border-white border-2 rounded-xl bg-[#1d1d1d]">
+              <div className="p-4 basis-1/3 card relative rounded-xl bg-[#020817]">
                 <div className="text-xl font-semibold">Overall Score</div>
                 <div className="pt-4 text-5xl font-light">
                   {record && overall_score}/10
                 </div>
               </div>
             </div>
-            <div className="h-full border-white border-2 rounded-xl p-4 bg-[#1d1d1d]">
+            <div className="h-full card relative rounded-xl p-4 bg-[#020817]">
               <div className="flex justify-center text-xl">
                 Stress level Graph
               </div>
@@ -180,7 +172,7 @@ const Dashboard = () => {
             <div className="flex gap-6 h-fit">
               <Link
                 href="/tasks"
-                className="basis-2/4 border-2 border-white p-4 rounded-xl cursor-pointer bg-[#1d1d1d]"
+                className="basis-2/4 card relative p-4 rounded-xl cursor-pointer bg-[#020817]"
               >
                 <div className="font-semibold text-2xl flex justify-center">
                   Tasks List
@@ -196,7 +188,7 @@ const Dashboard = () => {
                     )}
                 </div>
               </Link>
-              <div className="basis-2/4 border-2 border-white p-4 rounded-xl bg-[#1d1d1d] ">
+              <div className="basis-2/4 card relative p-4 rounded-xl bg-[#020817] ">
                 <div className="text-xl flex justify-center">
                   Mood Distribution Chart
                 </div>
@@ -204,11 +196,14 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="flex w-full h-full gap-6">
-              <div className="border-2 basis-3/5 border-white p-4 rounded-xl h-full bg-[#1d1d1d]">
+              <div className="card relative basis-3/5  p-4 rounded-xl h-full bg-[#020817]">
                 <div className="flex justify-center">Sleep Chart</div>
                 {record && <SleepBarChart data={record.sleep} />}
               </div>
-              <div className="basis-2/5 border-2 border-white rounded-xl p-4 bg-[#1d1d1d]">
+              <Link
+                href="/tasks"
+                className="basis-2/5 card relative rounded-xl p-4 bg-[#020817]"
+              >
                 <div className="font-semibold text-xl flex justify-center pt-4">
                   Exercises List
                 </div>
@@ -222,7 +217,7 @@ const Dashboard = () => {
                       )
                     )}
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         </div>

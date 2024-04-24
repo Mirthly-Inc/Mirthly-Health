@@ -17,7 +17,7 @@ const renderCustomizedLabel = ({
   const moods = ["Sad", "Neutral", "Happy"];
   const radius = innerRadius + (outerRadius - innerRadius) * 0.22;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.tan(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
   return (
     <text
@@ -35,7 +35,7 @@ const renderCustomizedLabel = ({
 
 const MoodPie = ({ data }) => {
   return (
-    <div className="h-[90%] border-2 border-white">
+    <div className="h-[90%]">
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie

@@ -21,7 +21,6 @@
     "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-toast": "^1.1.5",
     "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.0",
     "date-fns": "^3.6.0",
     "firebase": "^10.11.0",
     "langchain": "^0.1.33",
@@ -33,7 +32,7 @@
     "react-hook-form": "^7.51.3",
     "react-resizable-panels": "^2.0.17",
     "recharts": "^2.12.6",
-    "tailwind-merge": "^2.2.2",
+    "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.22.4"
   },

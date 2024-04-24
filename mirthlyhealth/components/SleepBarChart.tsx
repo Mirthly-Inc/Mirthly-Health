@@ -34,8 +34,6 @@ const SleepBarChart = ({ data }) => {
       <ResponsiveContainer width="100%" height="100%">
         <BarChart width={500} height={300} data={data}>
           <Tooltip content={<CustomTooltip />} />
-          <Legend />
-
           <Bar dataKey="sleep_level" fill="#ffff" />
         </BarChart>
       </ResponsiveContainer>

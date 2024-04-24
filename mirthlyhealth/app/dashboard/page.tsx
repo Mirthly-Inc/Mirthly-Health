@@ -10,6 +10,9 @@ import { NavigationMenuDemo } from "@/components/Navigation";
 import SleepBarChart from "@/components/SleepBarChart";
 import MoodPie from "@/components/MoodPie";
 import { exercise_type, task_type } from "@/utils/Types";
+import React from "react";
+import backgroundimage from "../../public/afdssd.jpg";
+import Image from "next/image";
 
 const mentalHealthQuotes = [
   "You don't have to be everything to everyone. You just have to be you.",
@@ -70,6 +73,7 @@ const Dashboard = () => {
   const [rest, setRest] = useState<any | null>(null);
   const [depression, setDepression] = useState<any | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [overall_score, setOverallScore] = useState<any | null>(null);
   const [moodpiechart, setMoodpiechart] = useState<any | null>(null);
 
   useEffect(() => {
@@ -113,6 +117,7 @@ const Dashboard = () => {
             const avgStress = sum / res.stress.length;
             setMoodpiechart(moodpie);
             setRest(avgSleep.toFixed(1));
+            setOverallScore((10 - (avgSleep + avgStress) / 2).toFixed(1));
             setDepression(avgStress.toFixed(1));
             setRecord(res);
           }
@@ -130,8 +135,14 @@ const Dashboard = () => {
 
   return (
     <div className="h-screen">
+      <Image
+        src="/afdssd.jpg"
+        alt="Background Image"
+        layout="fill"
+        className="-z-10"
+      />
       <NavigationMenuDemo />
-      <div className="p-6 h-[90%]">
+      <div className="p-6 h-[90%] z-200">
         <div className="flex gap-6 h-full">
           <div className="flex flex-col basis-1/2 gap-6">
             <div className="flex gap-4 items-center">
@@ -139,7 +150,7 @@ const Dashboard = () => {
               <div>{quote}</div>
             </div>
             <div className="flex gap-6 h-[150px]">
-              <div className="p-4 basis-1/3 border-white border-2 rounded-xl">
+              <div className="p-4 basis-1/3 border-white border-2 rounded-xl shadow-xl bg-[#1d1d1d]">
                 <div className="text-xl font-semibold">Stress Level</div>
                 <div className="pt-4 text-5xl font-light">
                   {record && depression}/10
@@ -151,13 +162,17 @@ const Dashboard = () => {
                   {record && rest}/10
                 </div>
               </div>
-              <div className="p-4 basis-1/3 border-white border-2 rounded-xl">
-                <div className="text-xl font-semibold">Need to discuss</div>
-                <div className="pt-4 text-5xl font-light">NA</div>
+              <div className="p-4 basis-1/3 border-white border-2 rounded-xl bg-[#1d1d1d]">
+                <div className="text-xl font-semibold">Overall Score</div>
+                <div className="pt-4 text-5xl font-light">
+                  {record && overall_score}/10
+                </div>
               </div>
             </div>
-            <div className="h-full border-white border-2 rounded-xl p-4">
-              Stress level Graph
+            <div className="h-full border-white border-2 rounded-xl p-4 bg-[#1d1d1d]">
+              <div className="flex justify-center text-xl">
+                Stress level Graph
+              </div>
               {record && <StressChart data={record.stress} />}
             </div>
           </div>
@@ -165,41 +180,49 @@ const Dashboard = () => {
             <div className="flex gap-6 h-fit">
               <Link
                 href="/tasks"
-                className="basis-2/5 border-2 border-white p-4 rounded-xl cursor-pointer"
+                className="basis-2/4 border-2 border-white p-4 rounded-xl cursor-pointer bg-[#1d1d1d]"
               >
-                <div className="font-semibold text-xl">Tasks List :</div>
-                <div className="pt-2 pl-2">
+                <div className="font-semibold text-2xl flex justify-center">
+                  Tasks List
+                </div>
+                <div className="pt-8 pl-6">
                   {record &&
                     record.tasks.map(
                       (single_task: task_type, index: number) => (
-                        <div key={index} className="pb-2">
+                        <li key={index} className="pb-4 text-xl">
                           {single_task.shortform}
-                        </div>
-                      )
-                    )}
-                </div>
-                <div className="font-semibold text-xl pt-4">
-                  Exercises List :
-                </div>
-                <div className="pt-2 pl-2">
-                  {record &&
-                    record.exercise.map(
-                      (single_exercise: exercise_type, index: number) => (
-                        <div key={index} className="pb-2">
-                          {single_exercise.exercise_name}
-                        </div>
+                        </li>
                       )
                     )}
                 </div>
               </Link>
-              <div className="basis-3/5 border-2 border-white p-4 rounded-xl">
-                Happiness Feeling pie Chart or graph
+              <div className="basis-2/4 border-2 border-white p-4 rounded-xl bg-[#1d1d1d] ">
+                <div className="text-xl flex justify-center">
+                  Mood Distribution Chart
+                </div>
                 {record && <MoodPie data={moodpiechart} />}
               </div>
             </div>
-            <div className="border-2 border-white p-4 rounded-xl h-full ">
-              Sleep Chart
-              {record && <SleepBarChart data={record.sleep} />}
+            <div className="flex w-full h-full gap-6">
+              <div className="border-2 basis-3/5 border-white p-4 rounded-xl h-full bg-[#1d1d1d]">
+                <div className="flex justify-center">Sleep Chart</div>
+                {record && <SleepBarChart data={record.sleep} />}
+              </div>
+              <div className="basis-2/5 border-2 border-white rounded-xl p-4 bg-[#1d1d1d]">
+                <div className="font-semibold text-xl flex justify-center pt-4">
+                  Exercises List
+                </div>
+                <div className="pt-8 pl-6">
+                  {record &&
+                    record.exercise.map(
+                      (single_exercise: exercise_type, index: number) => (
+                        <li key={index} className="pb-4 text-xl">
+                          {single_exercise.exercise_name}
+                        </li>
+                      )
+                    )}
+                </div>
+              </div>
             </div>
           </div>
         </div>

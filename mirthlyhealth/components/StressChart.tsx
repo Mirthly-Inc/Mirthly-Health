@@ -31,7 +31,6 @@ const StressChart = ({ data }) => {
           className="text-black"
         />
         <Tooltip content={<CustomTooltip />} />
-        <Legend />
       </LineChart>
     </div>
   );

@@ -63,7 +63,7 @@ export function CardWithForm() {
   const [Submitted, setSubmitted] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const { toast } = useToast();
-  const { user,setData } = useData();
+  const { user, setData } = useData();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
@@ -89,7 +89,7 @@ export function CardWithForm() {
     console.log("Loading...");
     setSubmitted(true);
     const res = await analyze_data(datas);
-    setData(res)
+    setData(res);
     setLoading(false);
     toast({
       description: "Your Health data has been saved successfully.",
@@ -98,7 +98,7 @@ export function CardWithForm() {
   };
 
   return (
-    <Card className="w-[350px]">
+    <Card className="w-[350px] card relative">
       <CardHeader>
         <CardTitle>Help us understand your mood</CardTitle>
       </CardHeader>

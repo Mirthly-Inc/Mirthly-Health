@@ -98,7 +98,7 @@
       var(--clr-4),
       var(--clr-3)
     );
-    border-radius: inherit;
+    border-radius: 10px;
     animation: rotation 4s linear infinite;
   }
 

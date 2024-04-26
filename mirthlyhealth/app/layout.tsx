@@ -22,6 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <link rel="icon" sizes="192x192" href="/mirthly.jpg" />
       <DataProvider>
         <body
           className={cn(

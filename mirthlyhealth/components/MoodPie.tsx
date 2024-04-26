@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
 const COLORS = ["#A7EB9A", "#E5A5EB", "#9EDBEA"];
@@ -11,7 +10,6 @@ const renderCustomizedLabel = ({
   midAngle,
   innerRadius,
   outerRadius,
-  percent,
   index,
 }) => {
   const moods = ["Sad", "Neutral", "Happy"];

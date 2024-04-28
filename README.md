@@ -5,7 +5,7 @@ This project aims to develop a web application that utilizes generative AI to pr
 ## Project Goals
 
 - [x] Develop a user-friendly questionnaire to assess mental state and user preferences.
-- [ ] Track user progress and provide feedback to encourage continued engagement.
+- [x] Track user progress and provide feedback to encourage continued engagement.
 - [ ] Provide Relaxation techniques and Guided meditations.
 - [ ] Provide Audio Support.
 
@@ -15,6 +15,20 @@ This project requires the following:
 
 - node
 - npm
+
+
+User Test Email Id to login
+
+```
+asdfgh@gmail.com
+```
+
+Password
+
+```
+123456
+```
+
 
 ## Running the Application
 
@@ -38,14 +52,4 @@ npm run dev
 ```
 
 
-User Test Email Id to login
 
-```
-asdfgh@gmail.com
-```
-
-Password
-
-```
-123456
-```

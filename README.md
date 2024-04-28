@@ -36,3 +36,16 @@ npm install
 ```
 npm run dev
 ```
+
+
+User Test Email Id to login
+
+```
+asdfgh@gmail.com
+```
+
+Password
+
+```
+123456
+```

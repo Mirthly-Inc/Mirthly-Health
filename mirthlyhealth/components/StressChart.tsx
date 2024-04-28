@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { LineChart, Line, Tooltip, Legend } from "recharts";
+import { LineChart, Line, Tooltip } from "recharts";
 
-const CustomTooltip = ({ payload, label, active }) => {
+const CustomTooltip = ({ payload, label, active }: any) => {
   if (active) {
     const analysis = payload[0].payload;
     return (
@@ -20,7 +20,7 @@ const CustomTooltip = ({ payload, label, active }) => {
   }
 };
 
-const StressChart = ({ data }) => {
+const StressChart = ({ data }: any) => {
   return (
     <div className="p-6 text-black">
       <LineChart width={600} height={300} data={data}>

@@ -11,7 +11,7 @@ const renderCustomizedLabel = ({
   innerRadius,
   outerRadius,
   index,
-}) => {
+}: any) => {
   const moods = ["Sad", "Neutral", "Happy"];
   const radius = innerRadius + (outerRadius - innerRadius) * 0.22;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
@@ -31,7 +31,7 @@ const renderCustomizedLabel = ({
   );
 };
 
-const MoodPie = ({ data }) => {
+const MoodPie = ({ data }: any) => {
   return (
     <div className="h-[90%]">
       <ResponsiveContainer width="100%" height="100%">
@@ -46,7 +46,7 @@ const MoodPie = ({ data }) => {
             fill="#8884d8"
             dataKey="value"
           >
-            {data.map((entry, index: number) => (
+            {data.map((entry: [], index: number) => (
               <Cell
                 key={`cell-${index}`}
                 fill={COLORS[index % COLORS.length]}

@@ -92,7 +92,7 @@ export const fetchAll = async (userid: string) => {
   }
 };
 
-export const updatedata = async (userid: string, analysis) => {
+export const updatedata = async (userid: string, analysis: any) => {
   try {
     const docRef = doc(db, "Mirthly-Health", userid);
     const docSnap = await getDoc(docRef);

@@ -37,7 +37,7 @@ export function SignInForm() {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const user = await login(values.email, values.password);
-    setUser(user.uid);
+    setUser(user?.uid);
     router.push("/dashboard");
     console.log(user);
     // redirect('/dashboard');

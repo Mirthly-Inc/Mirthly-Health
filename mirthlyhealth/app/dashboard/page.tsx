@@ -82,7 +82,7 @@ const Dashboard = () => {
           if (res.flag === false) router.push("/add");
           else {
             let sum = 0;
-            res.sleep.forEach((itr) => {
+            res.sleep.forEach((itr: any) => {
               sum += Number(itr.sleep_level);
             });
 
@@ -97,7 +97,7 @@ const Dashboard = () => {
               { happy: 0, value: 0, name: "happy" },
             ];
             sum = 0;
-            res.stress.forEach((itr) => {
+            res.stress.forEach((itr: any) => {
               let temp = Number(itr.stress_level);
               if (temp > 0 && temp <= 3) {
                 moodpie[0].sad = moodpie[0].sad + 1;

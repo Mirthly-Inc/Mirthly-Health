@@ -10,7 +10,7 @@ import {
   Tooltip,
 } from "recharts";
 
-const CustomTooltip = ({ payload, label, active }) => {
+const CustomTooltip = ({ payload, label, active }: any) => {
   if (active) {
     const analysis = payload[0].payload;
     return (
@@ -27,7 +27,7 @@ const CustomTooltip = ({ payload, label, active }) => {
   }
 };
 
-const SleepBarChart = ({ data }) => {
+const SleepBarChart = ({ data }: any) => {
   console.log(data);
   return (
     <div className=" h-[90%] ">

@@ -20,7 +20,7 @@ This project requires the following:
 User Test Email Id to login
 
 ```
-testuser01@abc.com
+testuser01@adc.com
 ```
 
 Password

@@ -20,7 +20,7 @@ This project requires the following:
 User Test Email Id to login
 
 ```
-asdfgh@gmail.com
+testuser01@abc.com
 ```
 
 Password
@@ -28,7 +28,6 @@ Password
 ```
 123456
 ```
-
 
 ## Running the Application
 

@@ -13,12 +13,12 @@ import {
 } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD70YB2b2kW5Q9pofO1fvItemlXLFfcHI0",
-  authDomain: "windowsassistant-8db02.firebaseapp.com",
-  projectId: "windowsassistant-8db02",
-  storageBucket: "windowsassistant-8db02.appspot.com",
-  messagingSenderId: "312940286579",
-  appId: "1:312940286579:web:a5b36dd4693ba279819006",
+  apiKey: "AIzaSyC2kaj9et2pEMlAWDjyLxXAozanJLMiYr4",
+  authDomain: "gen-lang-client-0058932291.firebaseapp.com",
+  projectId: "gen-lang-client-0058932291",
+  storageBucket: "gen-lang-client-0058932291.appspot.com",
+  messagingSenderId: "869791161424",
+  appId: "1:869791161424:web:5d75bc55cea098dd9fc555",
 };
 
 const app = initializeApp(firebaseConfig);
